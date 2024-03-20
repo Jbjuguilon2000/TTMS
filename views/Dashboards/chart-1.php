@@ -1,8 +1,44 @@
 <?php
+
+require(dirname(dirname(__DIR__)) . '/Database.php');
+
+$utilTrainersQuery = $dbTTMS->query('SELECT * FROM util_trainers WHERE ID');
+$utilTrainersAll = $utilTrainersQuery->fetch_all(MYSQLI_ASSOC);
+
+foreach ($utilTrainersAll as $trainer) {
+    if ($trainer['ID'] < 6) {
+        $utTrainer[$trainer['ID']] = $trainer['Short'];
+    }
+}
+
+$trainingsQuery = $dbTTMS->query('SELECT * FROM trainings');
+$trainingsAll = $trainingsQuery->fetch_all(MYSQLI_ASSOC);
+
+foreach ($trainingsAll as $Training) {
+    $tTrainerID = explode(',', $Training['TrainerID']);
+    for ($x = 0; $x < count($tTrainerID); $x++) {
+        $TrainerName = str_replace('', '', $tTrainerID[$x]);
+        if (empty($CountTrainer[$TrainerName])) {
+            $CountTrainer[$TrainerName] = 1;
+        } else {
+            $CountTrainer[$TrainerName] += 1;
+        }
+    }
+}
+
+foreach ($utTrainer as $key => $value) {
+    $Trainer[] = $value;
+    if (isset($CountTrainer[$key])) {
+        $Trainings[] = $CountTrainer[$key];
+    } else {
+        $Trainings[] = 0;
+    }
+}
+
 ?>
 <style>
     .chart1-container {
-        height: 100%;
+        height: 50vh;
         width: 100%;
     }
 </style>
@@ -14,34 +50,24 @@
 <script>
     // setup 
     var data = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: <?php echo json_encode($Trainer); ?>,
         datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
+            label: 'Number of Trainings',
+            data: <?php echo json_encode($Trainings); ?>,
             backgroundColor: [
-                'rgba(255, 26, 104, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(0, 0, 0, 0.2)'
+                'rgba(255, 26, 104)',
+                'rgba(54, 162, 235)',
+                'rgba(255, 206, 86)',
+                'rgba(75, 192, 192)',
+                'rgba(153, 102, 255)',
+                'rgba(255, 159, 64)',
+                'rgba(0, 0, 0)'
             ],
-            borderColor: [
-                'rgba(255, 26, 104, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(0, 0, 0, 1)'
-            ],
-            borderWidth: 1
         }]
     };
 
     // config 
-    var config = {
+    var Chart1config = {
         type: 'bar',
         data,
         options: {
@@ -49,7 +75,7 @@
             responsive: true,
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
                 }
             }
         }
@@ -58,6 +84,6 @@
     // render init block
     var myChart1 = new Chart(
         document.getElementById('myChart1'),
-        config
+        Chart1config
     );
 </script>

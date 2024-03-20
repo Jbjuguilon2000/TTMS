@@ -5,8 +5,8 @@ define("USERNAME", "root");
 define("PASSWORD", "");
 define("DATABASE_TTMS", "ttms");
 
-$DBTTMS = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE_TTMS);
+$dbTTMS = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE_TTMS);
 
-if (!$DBTTMS) {
+if (!$dbTTMS) {
     die("Failed to Connect to TTMS");
 }

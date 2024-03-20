@@ -41,7 +41,7 @@
     };
 
     // config 
-    var config = {
+    var Chart2config = {
         type: 'doughnut',
         data,
         options: {
@@ -58,6 +58,6 @@
     // render init block
     var myChart2 = new Chart(
         document.getElementById('myChart2'),
-        config
+        Chart2config
     );
 </script>

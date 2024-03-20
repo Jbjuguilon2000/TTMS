@@ -1,10 +1,5 @@
-<?php
-require(dirname(dirname(__DIR__)) . '/Database.php');
 
-$Query = $DBTTMS->query('SELECT * FROM util_trainers WHERE ID');
-$UtilTrainers = $Query->fetch_all(MYSQLI_ASSOC);
 
-?>
 
 
 <header class="bg-white border-body mb-3">
@@ -18,24 +13,50 @@ $UtilTrainers = $Query->fetch_all(MYSQLI_ASSOC);
     <div class="dashboard-page">
         <!-- Search form for filtering the data by date -->
         <form id="search-form">
-            <div class="d-flex mb-3">
-                <div class="me-3">
-                    <label for="start-date">Start Date</label>
-                    <input type="date" id="start-date" class="form-control border-bottom">
+            <div class="d-flex flex-wrap mb-3">
+                <div class="d-flex justify-content-evenly ph-width me-2">
+                    <div class="me-2 ph-width">
+                        <label for="start-date">Start Date</label>
+                        <input type="date" id="start-date" class="form-control border-bottom">
+                    </div>
+                    <div class="ph-width">
+                        <label for="start-date">End Date</label>
+                        <input type="date" id="end-date" class="form-control border-bottom">
+                    </div>
                 </div>
-                <div class="me-3">
-                    <label for="start-date">End Date</label>
-                    <input type="date" id="end-date" class="form-control border-bottom">
-                </div>
-                <div class="me-3 align-self-end">
-                    <button type="submit" class="btn btn-primary">Search</button>
+                <div class="ph-width align-self-end mt-3">
+                    <button type="submit" class="btn w-100 btn-primary">Search</button>
                 </div>
             </div>
         </form>
 
         <div class="row mb-3">
+
+            <div class="col-md-12 col-lg-6 mb-3">
+                <div class="row row-cols-1">
+                    <div class="col-md-6 col-lg-12 mb-3">
+                        <div class="card rounded-0">
+                            <div class="card-body">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Chart 2 -->
+                    <div class="col-md-6 col-lg-12">
+                        <div class="card rounded-0">
+                            <div class="card-body">
+                                <div class="d-flex align-items-center justify-content-center">
+                                    <div class="spinner-border text-primary" role="status" id="chart2-loader"></div>
+                                </div>
+                                <!-- Chart Display -->
+                                <div id="chart2"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <!-- Chart 1 -->
-            <div class="col-md-6 mb-3 order-sm-2 order-md-1">
+            <div class="col-md-12 col-lg-6 mb-3">
                 <div class="card">
                     <div class="card-body">
                         <div class="d-flex align-items-center justify-content-center">
@@ -48,32 +69,7 @@ $UtilTrainers = $Query->fetch_all(MYSQLI_ASSOC);
             </div>
 
 
-            <div class="col-md-6 mb-3 order-sm-1 order-md-2">
-                <div class="row m-0 g-0 mb-3">
-                    <div class="col-md-12">
-                        <div class="card rounded-0">
-                            <div class="card-body">
-                            </div>
-                        </div>
-                    </div>
-                </div>
 
-                <div class="row m-0 g-0 mb-3">
-                    <!-- Chart 2 -->
-                    <div class="col-md-12">
-                        <div class="card rounded-0">
-                            <div class="card-body">
-                                <div class="d-flex align-items-center justify-content-center">
-                                    <div class="spinner-border text-primary" role="status" id="chart2-loader"></div>
-                                </div>
-                                <!-- Chart Display -->
-                                <div id="chart2"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
     </div>
