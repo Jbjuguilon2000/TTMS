@@ -1,4 +1,4 @@
-<p align="middle"> <img src="./Assets/logos/DOTr-MRT3_landscape(d).png"></p>
+<p align="middle"> <img src="./Assets/logos/DOTr-MRT3_landscape(w).png"></p>
 
 # Technical Training Management System (TTMS)
 
