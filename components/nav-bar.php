@@ -8,26 +8,23 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <btn class="btn btn-link rounded-0 nav-link navbtn active" onclick="Dashboards()">Dashboard</btn>
+                    <button class="btn btn-link rounded-0 nav-link navbtn active" onclick="Dashboards()">Dashboard</button>
                 </li>
 
                 <li class="nav-item">
-                    <btn class="btn btn-link rounded-0 nav-link navbtn" onclick="Employees()">Employees</btn>
+                    <button class="btn btn-link rounded-0 nav-link navbtn" onclick="Employees()">Employees</button>
                 </li>
 
                 <li class="nav-item">
-                    <btn class="btn btn-link rounded-0 nav-link navbtn" onclick="Trainings()">Trainings</btn>
+                    <button class="btn btn-link rounded-0 nav-link navbtn" onclick="Trainings()">Trainings</button>
                 </li>
 
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-link nav-link rounded-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Dropdown
-                    </a>
+                    </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li>
-                            <hr class="dropdown-divider">
-                        </li>
                         <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
                     </ul>
                 </li>
