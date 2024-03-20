@@ -3,7 +3,14 @@
 
 ?>
 
-<main class="container container-fluid" data-bs-theme="dark">
+
+<header class="bg-white border-body">
+    <div class="container container-fluid">
+        <h3 class="m-0">Employees</h3>
+    </div>
+</header>
+
+<main class="container container-fluid">
 
     <div class="employee-page">
         <h2>Welcome to the Employee Section</h2>

@@ -4,11 +4,9 @@
 ?>
 
 
-<header>
+<header class="bg-white border-body">
     <div class="container container-fluid">
-        <h2 class="m-0">Dashboard</h2>
-        <p class="text-muted m-0">Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-        <hr>
+        <h3 class="m-0">Dashboard</h3>
     </div>
 </header>
 

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-white border-bottom border-body sticky-top" data-bs-theme="white">
+<nav class="navbar navbar-expand-lg bg-white border-bottom border-body sticky-top p-0" data-bs-theme="white">
     <div class="container container-fluid">
         <img src="./Assets/logos/DOTr-MRT3_landscape(d).png" class="logo" alt="DOTr-MRT3">
         <a class="navbar-brand" href="#">TTMS</a>
