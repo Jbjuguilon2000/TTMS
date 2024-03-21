@@ -1,6 +1,6 @@
-<header class="bg-white border-body mb-3">
+<header class="border-body mb-3">
     <div class="container container-fluid">
-        <h3 class="m-0">Dashboard</h3>
+        <h2 class="m-0">Dashboard</h2>
     </div>
 </header>
 
@@ -9,7 +9,7 @@
     <div class="dashboard-page">
         <!-- Search form for filtering the data by date -->
         <form id="search-form">
-            <div class="d-flex flex-wrap mb-3">
+            <div class="d-flex flex-wrap mb-4">
                 <div class="d-flex justify-content-evenly ph-width me-2">
                     <div class="me-2 ph-width">
                         <label for="start-date">Start Date</label>

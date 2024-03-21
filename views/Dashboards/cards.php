@@ -28,9 +28,19 @@ $colors = [
 
 ?>
 
+<style>
+    .statsindicator {
+        height: 30px;
+        width: 30px;
+        border-radius: 99px;
+        position: absolute;
+        top: -5px;
+        right: 10%;
+    }
+</style>
 
 
-<div class="row row-cols-md-2 g-3">
+<div class="row row-cols-lg-4 row-cols-md-2 g-3">
     <?php
     foreach ($Status as $key => $value) {
         $StatusName = $value;
@@ -40,9 +50,11 @@ $colors = [
             $StatusCount = 0;
         }
         $color = $colors[$key];
-        echo "<div class='col-6 col-sm-6'>";
-        echo "<div class='card border-0'>";
+        echo "<div class='col-6 col-lg-3'>";
+        echo "<div class='card border-0 shadow-sm rounded-5'>";
         echo "<div class='card-body'>";
+        echo "<div class='statsindicator' style='background-color: $color;'>";
+        echo "</div>";
         echo "<h3 class='m-0'>$StatusCount</h3>";
         echo "<h5 class='m-0'>$StatusName</h5>";
         echo "</div>";

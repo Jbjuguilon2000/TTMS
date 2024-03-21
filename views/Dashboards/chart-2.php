@@ -30,19 +30,19 @@ foreach ($Courses as $key => $value) {
 ?>
 <style>
     .chart2-container {
-        height: 300px;
+        height: 350px;
         width: 100%;
     }
 </style>
-
-<div class="mb-3">
-    <h3 class="m-0">Courses</h3>
-    <p class="text-muted m-0">Chart shows the frequency of courses conducted. </p>
+<div class="shadow-sm bg-white rounded-5 p-4">
+    <div class="mb-3">
+        <h3 class="m-0">Courses</h3>
+        <p class="text-muted m-0">Chart shows the frequency of courses conducted. </p>
+    </div>
+    <div class="chart2-container">
+        <canvas id="myChart2"></canvas>
+    </div>
 </div>
-<div class="chart2-container">
-    <canvas id="myChart2"></canvas>
-</div>
-
 <script>
     // setup 
     var data = {

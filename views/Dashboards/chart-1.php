@@ -44,16 +44,18 @@ foreach ($CountTrainer as $key => $value) {
 ?>
 <style>
     .chart1-container {
-        height: 300px;
+        height: 350px;
         width: 100%;
     }
 </style>
-<div class="mb-3">
-    <h3 class="m-0">Trainers</h3>
-    <p class="text-muted m-0">Chart shows the number of trainings conducted by trainers. </p>
-</div>
-<div class="chart1-container">
-    <canvas id="myChart1"></canvas>
+<div class="shadow-sm bg-white rounded-5 p-4">
+    <div class="mb-3">
+        <h3 class="m-0">Trainers</h3>
+        <p class="text-muted m-0">Chart shows the number of trainings conducted by trainers. </p>
+    </div>
+    <div class="chart1-container">
+        <canvas id="myChart1"></canvas>
+    </div>
 </div>
 
 <script>
@@ -64,7 +66,7 @@ foreach ($CountTrainer as $key => $value) {
             label: 'Number of Trainings',
             data: <?php echo json_encode($Trainings); ?>,
             backgroundColor: [
-                '#0466c8',
+                '#118ab2',
             ],
             barPercentage: 0.5,
         }]
