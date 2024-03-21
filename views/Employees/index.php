@@ -4,7 +4,7 @@
 ?>
 
 
-<header class="bg-white border-body">
+<header class="border-body">
     <div class="container container-fluid">
         <h3 class="m-0">Employees</h3>
     </div>

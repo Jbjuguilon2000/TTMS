@@ -2,7 +2,7 @@
 
 require(dirname(dirname(__DIR__)) . '/Database.php');
 
-$utilStatusQuery = $dbTTMS->query("SELECT * FROM util_Status");
+$utilStatusQuery = $dbTTMS->query("SELECT * FROM util_status");
 $utilStatus = $utilStatusQuery->fetch_all(MYSQLI_ASSOC);
 foreach ($utilStatus as $r) {
     $Status[$r['ID']] = $r['Status'];
@@ -56,7 +56,7 @@ $colors = [
         echo "<div class='statsindicator' style='background-color: $color;'>";
         echo "</div>";
         echo "<h3 class='m-0'>$StatusCount</h3>";
-        echo "<h5 class='m-0'>$StatusName</h5>";
+        echo "<h5 class='m-0 text-muted'>$StatusName</h5>";
         echo "</div>";
         echo "</div>";
         echo "</div>";

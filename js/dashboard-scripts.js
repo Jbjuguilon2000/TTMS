@@ -69,7 +69,8 @@ function cards() {
       $("#cards-loader").hide();
       $("#cards").html(response);
     },
-    error: function () {
+    error: function (response) {
+      console.log(response);
       $("#cards-loader").hide();
       $("#cards").html("Error occurred. Please try again.");
     },
