@@ -6,16 +6,24 @@ $utilTrainersQuery = $dbTTMS->query('SELECT * FROM util_trainers WHERE ID');
 $utilTrainersAll = $utilTrainersQuery->fetch_all(MYSQLI_ASSOC);
 
 foreach ($utilTrainersAll as $trainer) {
-    if ($trainer['ID'] < 6) {
+    // Display Trainings only for the Current Trainers
+    // Alpapara, Santos, Saman Jr., and Martin Jr. 
+
+    if ($trainer['ID'] <= 5 && $trainer['ID'] > 1) {
         $utTrainer[$trainer['ID']] = $trainer['Short'];
     }
 }
+// FilterDates
+$StartDate = $_POST['StartDate'];
+$EndDate = $_POST['EndDate'];
 
-$trainingsQuery = $dbTTMS->query('SELECT * FROM trainings');
+$trainingsQuery = $dbTTMS->query("SELECT TrainerID FROM trainings WHERE (`StartDate` BETWEEN '$StartDate' AND '$EndDate') AND `StatusID` = 1");
 $trainingsAll = $trainingsQuery->fetch_all(MYSQLI_ASSOC);
 
 foreach ($trainingsAll as $Training) {
+    // splits the trainers
     $tTrainerID = explode(',', $Training['TrainerID']);
+    // count each trainers
     for ($x = 0; $x < count($tTrainerID); $x++) {
         $TrainerName = str_replace('', '', $tTrainerID[$x]);
         if (empty($CountTrainer[$TrainerName])) {
@@ -26,23 +34,24 @@ foreach ($trainingsAll as $Training) {
     }
 }
 
-foreach ($utTrainer as $key => $value) {
-    $Trainer[] = $value;
-    if (isset($CountTrainer[$key])) {
-        $Trainings[] = $CountTrainer[$key];
-    } else {
-        $Trainings[] = 0;
+foreach ($CountTrainer as $key => $value) {
+    $Trainings[] = $value;
+    if (isset($utTrainer[$key])) {
+        $Trainer[] = $utTrainer[$key];
     }
 }
 
 ?>
 <style>
     .chart1-container {
-        height: 50vh;
+        height: 300px;
         width: 100%;
     }
 </style>
-
+<div class="mb-3">
+    <h3 class="m-0">Trainers</h3>
+    <p class="text-muted m-0">Chart shows the number of trainings conducted by trainers. </p>
+</div>
 <div class="chart1-container">
     <canvas id="myChart1"></canvas>
 </div>
@@ -55,14 +64,9 @@ foreach ($utTrainer as $key => $value) {
             label: 'Number of Trainings',
             data: <?php echo json_encode($Trainings); ?>,
             backgroundColor: [
-                'rgba(255, 26, 104)',
-                'rgba(54, 162, 235)',
-                'rgba(255, 206, 86)',
-                'rgba(75, 192, 192)',
-                'rgba(153, 102, 255)',
-                'rgba(255, 159, 64)',
-                'rgba(0, 0, 0)'
+                '#0466c8',
             ],
+            barPercentage: 0.5,
         }]
     };
 
@@ -73,12 +77,28 @@ foreach ($utTrainer as $key => $value) {
         options: {
             maintainAspectRatio: false,
             responsive: true,
+            plugins: {
+                legend: {
+                    display: false,
+                },
+            },
             scales: {
                 y: {
-                    beginAtZero: true,
+                    grid: {
+                        display: false,
+                    },
+                    ticks: {
+                        stepSize: 10,
+                    }
+                },
+                x: {
+                    grid: {
+                        display: false,
+                    },
+
                 }
             }
-        }
+        },
     };
 
     // render init block

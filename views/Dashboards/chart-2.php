@@ -1,12 +1,44 @@
 <?php
+require(dirname(dirname(__DIR__)) . '/Database.php');
+
+// FilterDates
+$StartDate = $_POST['StartDate'];
+$EndDate = $_POST['EndDate'];
+
+$utilCourseQuery = $dbTTMS->query("SELECT * FROM util_course");
+$utilCourses = $utilCourseQuery->fetch_all(MYSQLI_ASSOC);
+
+foreach ($utilCourses as $uc) {
+    $uCourse[$uc['ID']] = $uc['Course'];
+}
+
+$trainingsQuery = $dbTTMS->query("SELECT CourseID ,COUNT(CourseID) AS CourseCount FROM trainings WHERE (`StartDate` BETWEEN '$StartDate' AND '$EndDate') AND `StatusID` = 1 GROUP BY CourseID");
+$trainingsAll = $trainingsQuery->fetch_all(MYSQLI_ASSOC);
+
+foreach ($trainingsAll as $training) {
+    $Courses[$training['CourseID']] = $training['CourseCount'];
+}
+
+foreach ($Courses as $key => $value) {
+    $CourseCounts[] = $value;
+    if (isset($uCourse[$key])) {
+        $Course[] = $uCourse[$key];
+    }
+}
+
+
 ?>
 <style>
     .chart2-container {
-        height: 100%;
+        height: 300px;
         width: 100%;
     }
 </style>
 
+<div class="mb-3">
+    <h3 class="m-0">Courses</h3>
+    <p class="text-muted m-0">Chart shows the frequency of courses conducted. </p>
+</div>
 <div class="chart2-container">
     <canvas id="myChart2"></canvas>
 </div>
@@ -14,28 +46,18 @@
 <script>
     // setup 
     var data = {
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        labels: <?php echo json_encode($Course) ?>,
         datasets: [{
-            label: 'Weekly Sales',
-            data: [18, 12, 6, 9, 12, 3, 9],
+            label: 'Conducted',
+            data: <?php echo json_encode($CourseCounts) ?>,
             backgroundColor: [
-                'rgba(255, 26, 104, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(0, 0, 0, 0.2)'
+                '#06d6a0',
+                '#118ab2',
+                '#ffd166',
+                '#ef476f',
+                '#073b4c',
             ],
-            borderColor: [
-                'rgba(255, 26, 104, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
-                'rgba(75, 192, 192, 1)',
-                'rgba(153, 102, 255, 1)',
-                'rgba(255, 159, 64, 1)',
-                'rgba(0, 0, 0, 1)'
-            ],
+
             borderWidth: 1
         }]
     };
@@ -45,12 +67,15 @@
         type: 'doughnut',
         data,
         options: {
+            indexAxis: 'y',
             maintainAspectRatio: false,
             responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
+            plugins: {
+                legend: {
+                    display: true,
+                    position: 'bottom',
+                    align: 'start',
+                },
             }
         }
     };

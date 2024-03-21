@@ -12,7 +12,7 @@
     <div class="container container-fluid">
         <div class="text-center text-muted">
             <p>&copy; 2023-2024 DOTr-MRT3 | All Rights Reserved</p>
-            <p>Designed by JBPJ</p>
+            <p>Designed by: <span>JB Juguilon</span></p>
         </div>
     </div>
 </footer>
