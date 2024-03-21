@@ -8,15 +8,15 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <button class="btn btn-link rounded-0 nav-link navbtn active" onclick="Dashboards()">Dashboard</button>
+                    <button class="btn btn-link rounded-0 nav-link navbtn active" data-target='Dashboards' onclick="Dashboards()">Dashboard</button>
                 </li>
 
                 <li class="nav-item">
-                    <button class="btn btn-link rounded-0 nav-link navbtn" onclick="Employees()">Employees</button>
+                    <button class="btn btn-link rounded-0 nav-link navbtn" data-target='Employees' onclick="Employees()">Employees</button>
                 </li>
 
                 <li class="nav-item">
-                    <button class="btn btn-link rounded-0 nav-link navbtn" onclick="Trainings()">Trainings</button>
+                    <button class="btn btn-link rounded-0 nav-link navbtn" data-target='Trainings' onclick="Trainings()">Trainings</button>
                 </li>
 
                 <li class="nav-item dropdown">

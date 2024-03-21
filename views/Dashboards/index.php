@@ -13,11 +13,11 @@
                 <div class="d-flex justify-content-evenly ph-width me-2">
                     <div class="me-2 ph-width">
                         <label for="start-date">Start Date</label>
-                        <input type="date" id="start-date" min="1999-01-01" value="<?php echo date('Y-01-01'); ?>" class="form-control border-bottom">
+                        <input type="date" id="start-date" min="1999-01-01" value="<?php echo date('Y-01-01'); ?>" class="form-control">
                     </div>
                     <div class="ph-width">
                         <label for="start-date">End Date</label>
-                        <input type="date" id="end-date" min="1999-01-01" value="<?php echo date('Y-12-31'); ?>" class="form-control border-bottom">
+                        <input type="date" id="end-date" min="1999-01-01" value="<?php echo date('Y-12-31'); ?>" class="form-control">
                     </div>
                 </div>
                 <div class="ph-width align-self-end mt-3">
