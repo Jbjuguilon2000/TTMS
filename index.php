@@ -22,7 +22,7 @@
     </div>
     <div id="main"></div>
 
-    <?php include('components/footer.php') ?>
+    <?php include('components/copyright.php') ?>
 
 
 
