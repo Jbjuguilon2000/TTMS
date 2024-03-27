@@ -1,8 +1,12 @@
 $(function () {
+  chartsData();
+});
+
+function chartsData() {
   chart1();
   chart2();
   cards();
-});
+}
 
 function chart1() {
   var StartDate = $("#start-date").val();
