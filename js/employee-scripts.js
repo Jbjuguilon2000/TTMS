@@ -1,14 +1,20 @@
 $(function () {
   table();
+  $(document).on("click", ".page-item", function () {
+    var page = $(this).attr("id");
+    table(page);
+  });
+  
 });
 
-function table() {
+function table(page) {
   $("#table-loader").show();
-
   $.ajax({
     url: "views/Employees/table.php",
-    type: "GET",
-    data: {},
+    type: "POST",
+    data: {
+      page: page,
+    },
     success: function (response) {
       $("#table-loader").hide();
       $("#table").html(response);

@@ -25,7 +25,6 @@ $colors = [
     '3' => '#ffd166',
     '4' => '#ef476f'
 ];
-
 ?>
 
 <style>
@@ -37,8 +36,16 @@ $colors = [
         top: -5px;
         right: 10%;
     }
-</style>
 
+
+    .card-hoverstyle {
+        transition: transform 0.3s;
+    }
+
+    .card-hoverstyle:hover {
+        transform: scale(1.07);
+    }
+</style>
 
 <div class="row row-cols-lg-4 row-cols-md-2 g-3">
     <?php
@@ -51,7 +58,7 @@ $colors = [
         }
         $color = $colors[$key];
         echo "<div class='col-6 col-lg-3'>";
-        echo "<div class='card border-0 shadow-sm rounded-5'>";
+        echo "<div class='card-hoverstyle card border-0 shadow-sm rounded-5'>";
         echo "<div class='card-body'>";
         echo "<div class='statsindicator' style='background-color: $color;'>";
         echo "</div>";

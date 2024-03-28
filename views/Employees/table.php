@@ -3,10 +3,28 @@
 require(dirname(dirname(__DIR__)) . '/Database.php');
 require(dirname(dirname(__DIR__)) . '/Functions.php');
 
-$employeeQuery = $dbMasterlist->query("SELECT * FROM employee ORDER BY `LastName` ASC LIMIT 10");
+
+$Limit = 10;
+$page = 0;
+if (isset($_POST["page"])) {
+    $page = $_POST["page"];
+} else {
+    $page = 1;
+}
+$start_from = ($page - 1) * $Limit;
+
+$empQuery = "SELECT * FROM employee ORDER BY `LastName` ASC";
+
+
+$total_records = mysqli_num_rows($dbMasterlist->query($empQuery));
+$total_pages = ceil($total_records / $Limit);
+
+$empQuery .= " LIMIT $start_from,$Limit";
+
+$employeeQuery = $dbMasterlist->query($empQuery);
 
 ?>
-<div class="table-responsive">
+<div class="table-responsive mb-3">
     <table class="table table-hover">
         <thead>
             <th class="text-center">Employee ID</th>
@@ -45,3 +63,60 @@ $employeeQuery = $dbMasterlist->query("SELECT * FROM employee ORDER BY `LastName
         </tbody>
     </table>
 </div>
+<?php
+
+
+
+if ($total_pages != 1) {
+
+    echo '<div class="d-flex justify-content-end">';
+    echo '<div>';
+    echo '<ul class="pagination">';
+    if ($page > 1) {
+        $prev = $page - 1;
+        echo '<li class="page-item" id="' . $prev . '">';
+        echo '<span class="page-link">Previous</span>';
+        echo '</li>';
+        echo '<li class="page-item" id="' . 1 . '">';
+        echo '<span class="page-link">1</span>';
+        echo '</li>';
+    } else {
+        echo '<li class="disabled">';
+        echo '<span class="page-link">Previous</span>';
+        echo '</li>';
+    }
+    if ($page >= 1 && $page <= $total_pages) {
+        $max = max(1, $page - 2);
+        $min = min($page + 3, $total_pages + 1);
+        for (; $max < $min; $max++) {
+            $active_page = "";
+            if ($max == $page) {
+                $active_page = "active";
+            }
+            echo '<li class="page-item ' . $active_page . '" id="' . $max . '">';
+            echo '<span class="page-link">' . $max . '</span>';
+            echo '</li>';
+        }
+    }
+    // if ($page < $total_pages) {
+    //     $next = $page + 1;
+    //     echo '<li class="">';
+    //     echo '<span class="page-link">...</span>';
+    //     echo '</li>';
+    //     echo '<li class="page-item" id="' . $total_pages . '">';
+    //     echo '<span class="page-link">' . $total_pages . '</span>';
+    //     echo '</li>';
+    //     echo '<li class="page-item" id="' . $next . '">';
+    //     echo '<span class="page-link">Next</span>';
+    //     echo '</li>';
+    // } else {
+    //     echo '<li class="disabled">';
+    //     echo '<span class="page-link">Next</span>';
+    //     echo '</li>';
+    // }
+    echo '</ul>';
+    echo '</div>';
+    echo '</div>';
+}
+
+?>
