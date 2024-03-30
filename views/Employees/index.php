@@ -16,7 +16,7 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
     </div>
 </header>
 
-<main class="container container-fluid">
+<main class="container container-fluid mb-3">
 
     <div class="employee-page">
         <form id="search-form">
@@ -64,6 +64,29 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
             </div>
             <div id="table"></div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="viewEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="viewEmployeeModalLabel">Employee Details</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="spinner-border text-primary" role="status" id="view-loader"></div>
+                        </div>
+                        <div id="view"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 
     </div>
 </main>

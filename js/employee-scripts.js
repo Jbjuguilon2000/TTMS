@@ -4,7 +4,6 @@ $(function () {
     var page = $(this).attr("id");
     table(page);
   });
-  
 });
 
 function table(page) {
@@ -22,6 +21,25 @@ function table(page) {
     error: function () {
       $("#table-loader").hide();
       $("#table").html("Error occurred. Please try again.");
+    },
+  });
+}
+
+function view(id) {
+  $("#view-loader").show();
+  $.ajax({
+    url: "views/Employees/view.php",
+    type: "POST",
+    data: {
+      ID: id,
+    },
+    success: function (response) {
+      $("#view-loader").hide();
+      $("#view").html(response);
+    },
+    error: function () {
+      $("#view-loader").hide();
+      $("#view").html("Error occurred. Please try again.");
     },
   });
 }

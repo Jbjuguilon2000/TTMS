@@ -4,7 +4,7 @@
     </div>
 </header>
 
-<main class="container container-fluid">
+<main class="container container-fluid mb-3">
 
     <div class="dashboard-page">
         <!-- Search form for filtering the data by date -->

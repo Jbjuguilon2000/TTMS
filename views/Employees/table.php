@@ -29,6 +29,7 @@ $employeeQuery = $dbMasterlist->query($empQuery);
         <tbody>
             <?php
             while ($r = $employeeQuery->fetch_assoc()) {
+                $ID = $r['ID'];
                 $EmployeeID = $r['EmployeeID'];
                 $LastName = $r['LastName'];
                 $FirstName = $r['FirstName'];
@@ -46,7 +47,10 @@ $employeeQuery = $dbMasterlist->query($empQuery);
                         <td class='align-middle text-center'>$Sex</td>
                         <td class='align-middle'>$DesignationID</td>
                         <td class='align-middle'>$DivisionID</td>
-                        <td class='align-middle text-center'><button class='btn btn-sm btn-primary'>View</button></td>
+                        <td class='align-middle text-center'>
+                        <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' onclick='view($ID)' data-bs-target='#viewEmployeeModal'>
+                        View
+                        </button></td>
                     </tr>";
             }
             ?>
@@ -54,5 +58,4 @@ $employeeQuery = $dbMasterlist->query($empQuery);
     </table>
 </div>
 
-
-<?php require(dirname(dirname(__DIR__)) .'/components/pagination.php') ?>
+<?php require(dirname(dirname(__DIR__)) . '/components/pagination.php') ?>
