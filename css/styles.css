@@ -40,6 +40,11 @@ footer {
   border-bottom: black solid 2px;
 }
 
+.page-link,
+button {
+  cursor: pointer;
+}
+
 @media screen and (max-width: 576px) {
   .ph-width {
     width: 100%;
