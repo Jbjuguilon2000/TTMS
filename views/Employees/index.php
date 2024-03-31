@@ -79,7 +79,7 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
 
         <!-- Modal -->
         <div class="modal fade" id="viewEmployeeModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="viewEmployeeModalLabel">Employee Details</h1>
@@ -93,13 +93,11 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
                         <input type="hidden" id="hiddenID" />
                     </div>
                     <div class="modal-footer justify-content-center">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-printer me-2"></i>Certificate</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-printer me-2"></i>Certificate</button>
                     </div>
                 </div>
             </div>
         </div>
-
-
     </div>
 </main>
 <div class="h-25 mb-3">&nbsp;</div>

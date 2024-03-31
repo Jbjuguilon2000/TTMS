@@ -19,11 +19,11 @@ foreach ($employeeDetails as $r) {
     $DesignationID = utilDesignationID($r['DesignationID']);
     $SectionID = utilSection($r['SectionID']);
     $DivisionID = utilDivisionID($r['DivisionID']);
-    $EmploymentStatusID = utilEmployment($r['EmploymentStatusID']);
+    $EmploymentStatusID = spanBadge(utilEmployment($r['EmploymentStatusID']));
     $AppointmentStatusID = utilAppointment($r['AppointmentStatusID']);
 }
 
-$selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StartDate, EndDate, StatusID, BatchNo FROM attendance AS a LEFT JOIN trainings AS t ON a.TrainingID = t.ID WHERE EmployeeID = '$eID'");
+$selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, TrainerID, StartDate, EndDate, BatchNo FROM attendance AS a LEFT JOIN trainings AS t ON a.TrainingID = t.ID WHERE EmployeeID = '$eID'");
 ?>
 
 
@@ -32,11 +32,7 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StartDate, EndDate,
     <div class="header mb-3">
         <div class="border-bottom">
             <div>
-                <p class="float-end">
-                    <span class='badge <?= ($EmploymentStatusID === "Currently Employed") ? "text-bg-success" : "text-bg-secondary" ?>'>
-                        <?= $EmploymentStatusID ?>
-                    </span>
-                </p>
+                <p class="float-end"><?= $EmploymentStatusID ?></p>
                 <p class="text-muted"><?= $EmployeeID ?></p>
                 <h1 class="text-uppercase"><?= "$LastName, $FirstName $MI. $ExtName" ?></h1>
                 <p>Sex: <strong><?= $Sex ?></strong></p>
@@ -51,29 +47,26 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StartDate, EndDate,
             <thead>
                 <tr>
                     <th>Course</th>
-                    <th>Batch</th>
-                    <th>Date</th>
-                    <th>Result</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th class="text-center">Batch</th>
+                    <th>Trainer/s</th>
+                    <th class="text-center">Result</th>
+                    <th class="text-center">Action</th>
                 </tr>
             </thead>
             <tbody>
                 <?php
                 while ($r = $selectTraining->fetch_assoc()) {
-                    $ResultID = utilResults($r['ResultID']);
-                    $CourseID = $r['CourseID'];
-                    $StartDate = $r['StartDate'];
-                    $EndDate = $r['EndDate'];
-                    $StatusID = utilTrainingStatus($r['StatusID']);
+                    $CourseID = utilCourse($r['CourseID']);
+                    $TrainerID = utilTrainers($r['TrainerID']);
+                    $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
+                    $ResultID = spanBadge(utilResults($r['ResultID']));
                     $BatchNo = $r['BatchNo'];
                     echo "<tr>
-                            <td>$CourseID</td>
-                            <td>$BatchNo</td>
-                            <td>$StartDate to $EndDate</td>
-                            <td>$ResultID</td>
-                            <td>$StatusID</td>
-                            <td><button class='btn btn-primary btn-sm'>View</button></td>
+                            <td class='align-middle'>$CourseID<br><span class='text-muted'>$TrainingDate</span></td>
+                            <td class='text-center align-middle'>$BatchNo</td>
+                            <td class='align-middle'>$TrainerID</td>
+                            <td class='text-center align-middle'>$ResultID</td>
+                            <td class='text-center align-middle'><button class='btn btn-primary btn-sm'>View</button></td>
                         </tr>";
                 }
                 ?>
