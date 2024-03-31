@@ -12,8 +12,6 @@ function chart1() {
   var StartDate = $("#start-date").val();
   var EndDate = $("#end-date").val();
 
-  $("#chart1-loader").show();
-
   $.ajax({
     url: "views/Dashboards/chart-1.php",
     type: "POST",
@@ -26,8 +24,7 @@ function chart1() {
       $("#chart1").html(response);
     },
     error: function () {
-      $("#chart1-loader").hide();
-      $("#chart1").html("Error occurred. Please try again.");
+      $("#chart1-loader").show();
     },
   });
 }
@@ -50,8 +47,7 @@ function chart2() {
       $("#chart2").html(response);
     },
     error: function () {
-      $("#chart2-loader").hide();
-      $("#chart2").html("Error occurred. Please try again.");
+      $("#chart2-loader").show();
     },
   });
 }
@@ -74,9 +70,7 @@ function cards() {
       $("#cards").html(response);
     },
     error: function (response) {
-      console.log(response);
-      $("#cards-loader").hide();
-      $("#cards").html("Error occurred. Please try again.");
+      $("#cards-loader").show();
     },
   });
 }

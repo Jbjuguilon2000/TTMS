@@ -65,7 +65,7 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
                 </div>
                 <div class="col-12 col-xl-1 col-md-2">
                     <label for="">&nbsp;</label>
-                    <button type="button" class="btn w-100 btn-primary">Search</button>
+                    <button type="button" class="btn w-100 btn-primary" onclick="table()">Search</button>
                 </div>
             </div>
         </form>

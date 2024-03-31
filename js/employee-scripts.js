@@ -7,11 +7,17 @@ $(function () {
 });
 
 function table(page) {
-  $("#table-loader").show();
+  var name = $("#search-name").val();
+  var designation = $("#select-designation").val();
+  var division = $("#select-division").val();
+
   $.ajax({
     url: "views/Employees/table.php",
     type: "POST",
     data: {
+      name: name,
+      designation: designation,
+      division: division,
       page: page,
     },
     success: function (response) {
@@ -19,14 +25,12 @@ function table(page) {
       $("#table").html(response);
     },
     error: function () {
-      $("#table-loader").hide();
-      $("#table").html("Error occurred. Please try again.");
+      $("#table-loader").show();
     },
   });
 }
 
 function view(id) {
-  $("#view-loader").show();
   $("#hiddenID").val(id);
   $.ajax({
     url: "views/Employees/view.php",
@@ -39,8 +43,7 @@ function view(id) {
       $("#view").html(response);
     },
     error: function () {
-      $("#view-loader").hide();
-      $("#view").html("Error occurred. Please try again.");
+      $("#view-loader").show();
     },
   });
 }

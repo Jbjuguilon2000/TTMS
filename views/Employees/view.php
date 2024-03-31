@@ -66,11 +66,10 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, TrainerID, StartDat
                             <td class='text-center align-middle'>$BatchNo</td>
                             <td class='align-middle'>$TrainerID</td>
                             <td class='text-center align-middle'>$ResultID</td>
-                            <td class='text-center align-middle'><button class='btn btn-primary btn-sm'>View</button></td>
+                            <td class='text-center align-middle'><button class='btn btn-outline-secondary btn-sm'><i class='bi bi-box-arrow-in-down-right'></i></button></td>
                         </tr>";
                 }
                 ?>
-
             </tbody>
         </table>
     </div>

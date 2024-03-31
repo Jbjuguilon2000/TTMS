@@ -4,12 +4,31 @@ require(dirname(dirname(__DIR__)) . '/Database.php');
 require(dirname(dirname(__DIR__)) . '/Functions.php');
 require(dirname(dirname(__DIR__)) . '/components/set_page_limit.php');
 
-$empQuery = "SELECT * FROM employee ORDER BY `LastName` ASC";
+$search_name = $_POST['name'];
+$search_designation = $_POST['designation'];
+$search_division = $_POST['division'];
+
+
+$empQuery = "SELECT * FROM employee";
+
+if ($search_name != '') {
+    $empQuery .= " WHERE CONCAT(Lastname, ', ', Firstname, ' ', ExtensionName, ' ', MiddleName, '.') LIKE '%$search_name%' ";
+}
+
+if ($search_designation != '') {
+    $separator = ($search_name != '') ? " AND " : " WHERE ";
+    $empQuery .= $separator . " DesignationID = '$search_designation' ";
+}
+
+if ($search_division != '') {
+    $separator = ($search_name || $search_designation) ? " AND " : " WHERE ";
+    $empQuery .= $separator . " DivisionID = '$search_division' ";
+}
 
 $total_records = mysqli_num_rows($dbMasterlist->query($empQuery));
 $total_pages = ceil($total_records / $Limit);
 
-$empQuery .= " LIMIT $start_from,$Limit";
+$empQuery .= "  ORDER BY `LastName` ASC LIMIT $start_from,$Limit";
 
 $employeeQuery = $dbMasterlist->query($empQuery);
 
@@ -48,7 +67,7 @@ $employeeQuery = $dbMasterlist->query($empQuery);
                         <td class='align-middle'>$DivisionID</td>
                         <td class='align-middle text-center'>
                         <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' onclick='view($ID)' data-bs-target='#viewEmployeeModal'>
-                        View
+                        <i class='bi bi-eye-fill'></i>
                         </button></td>
                     </tr>";
             }
