@@ -1,7 +1,7 @@
 <style>
     footer {
         p {
-            font-size: 11px;
+            font-size: 9px;
             margin: 0;
             padding: 0;
         }

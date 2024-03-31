@@ -27,6 +27,7 @@ function table(page) {
 
 function view(id) {
   $("#view-loader").show();
+  $("#hiddenID").val(id);
   $.ajax({
     url: "views/Employees/view.php",
     type: "POST",

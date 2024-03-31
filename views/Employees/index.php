@@ -1,6 +1,10 @@
 <?php
 
 require(dirname(dirname(__DIR__)) . '/Database.php');
+require(dirname(dirname(__DIR__)) . '/Functions.php');
+
+$employeeQuery = $dbMasterlist->query("SELECT CONCAT(LastName,', ',FirstName) AS `employeeName` FROM employee");
+$employeeAll = $employeeQuery->fetch_all(MYSQLI_ASSOC);
 
 $divisionQuery = $dbMasterlist->query("SELECT * FROM util_division");
 $divisionAll = $divisionQuery->fetch_all(MYSQLI_ASSOC);
@@ -23,7 +27,15 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
             <div class="row g-2 mb-3">
                 <div class="col-4 col-md-2">
                     <label for="search-name">Employee</label>
-                    <input type="text" id="search-name" class="form-control" placeholder="-">
+                    <input type="text" id="search-name" class="form-control" placeholder="-" list="employeeList">
+                    <datalist id="employeeList">
+                        <?php
+                        foreach ($employeeAll as $r) {
+                            $employeeName = $r['employeeName'];
+                            echo "<option value='$employeeName'>$employeeName</option>";
+                        }
+                        ?>
+                    </datalist>
                 </div>
                 <div class="col-4 col-md-2">
                     <label for="select-designation">Designation</label>
@@ -53,7 +65,7 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
                 </div>
                 <div class="col-12 col-xl-1 col-md-2">
                     <label for="">&nbsp;</label>
-                    <button class="btn w-100 btn-primary">Search</button>
+                    <button type="button" class="btn w-100 btn-primary">Search</button>
                 </div>
             </div>
         </form>
@@ -66,7 +78,7 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
         </div>
 
         <!-- Modal -->
-        <div class="modal fade" id="viewEmployeeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
+        <div class="modal fade" id="viewEmployeeModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="viewEmployeeModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -78,10 +90,10 @@ $designationAll = $designationQuery->fetch_all(MYSQLI_ASSOC);
                             <div class="spinner-border text-primary" role="status" id="view-loader"></div>
                         </div>
                         <div id="view"></div>
+                        <input type="hidden" id="hiddenID" />
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Submit</button>
+                    <div class="modal-footer justify-content-center">
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal"><i class="bi bi-printer me-2"></i>Certificate</button>
                     </div>
                 </div>
             </div>

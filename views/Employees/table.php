@@ -39,7 +39,6 @@ $employeeQuery = $dbMasterlist->query($empQuery);
                 $Sex = ($r['Sex'] == 'unknown') ? '' : $r['Sex'];
                 $DesignationID = utilDesignationID($r['DesignationID']);
                 $DivisionID = utilDivisionID($r['DivisionID']);
-                $AppointmentStatusID = $r['AppointmentStatusID'];
 
                 echo "<tr>
                         <td class='align-middle text-center'>$EmployeeID</td>

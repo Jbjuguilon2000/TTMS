@@ -10,48 +10,178 @@ function middleInitials($initialArr)
     return $initials;
 }
 
+
 // Get a util value from Division
-function utilDivisionID($id)
+function utilDivisionID($utilID)
 {
     global $dbMasterlist;
-
-    if ($id !== 0) {
-        $whereID = 'WHERE ID = ' . $id;
-    }
-
-    $utilDivisionQuery = $dbMasterlist->query("SELECT * FROM util_division $whereID");
-    $divisions = $utilDivisionQuery->fetch_all(MYSQLI_ASSOC);
-
-    $divisionName = '';
-
-    foreach ($divisions as $r) {
-        if (isset($r)) {
-            $divisionName = $r['Division'];
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
         }
     }
 
-    return $divisionName;
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_division $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Division'];
+        }
+    }
+
+    return $data;
 }
 
 // Get a util value from Designation
-function utilDesignationID($id)
+function utilDesignationID($utilID)
 {
     global $dbMasterlist;
-
-    if ($id !== 0) {
-        $whereID = 'WHERE ID = ' . $id;
-    }
-
-    $utilDesignationsQuery = $dbMasterlist->query("SELECT * FROM util_designation $whereID");
-    $designations = $utilDesignationsQuery->fetch_all(MYSQLI_ASSOC);
-
-    $designationName = '';
-
-    foreach ($designations as $r) {
-        if (isset($r)) {
-            $designationName = $r['Designation'];
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
         }
     }
 
-    return $designationName;
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_designation $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Designation'];
+        }
+    }
+
+    return $data;
+}
+
+// Get a util value from Employee Status
+function utilEmployment($utilID)
+{
+    global $dbMasterlist;
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
+        }
+    }
+
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_employmentstatus $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Status'];
+        }
+    }
+
+    return $data;
+}
+
+// Get a util value from Appointment Status
+function utilAppointment($utilID)
+{
+    global $dbMasterlist;
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
+        }
+    }
+
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_appointmentstatus $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Appointment'];
+        }
+    }
+
+    return $data;
+}
+
+// Get a util value from Section/Division
+function utilSection($utilID)
+{
+    global $dbMasterlist;
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
+        }
+    }
+
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_section $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Section'];
+        }
+    }
+
+    return $data;
+}
+
+// Get a util value from Results
+function utilResults($utilID)
+{
+    global $dbTTMS;
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
+        }
+    }
+
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_results $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Results'];
+        }
+    }
+
+    return $data;
+}
+
+// Get a util value from Results
+function utilTrainingStatus($utilID)
+{
+    global $dbTTMS;
+    $whereID = '';
+    if($utilID != null){
+        if ($utilID !== 0) {
+            $whereID = 'WHERE ID = ' . $utilID;
+        }
+    }
+
+    $selectQuery = $dbTTMS->query("SELECT * FROM `util_status` $whereID");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    $data = '';
+
+    foreach ($fetchData as $r) {
+        if (isset($r)) {
+            $data = $r['Status'];
+        }
+    }
+
+    return $data;
 }
