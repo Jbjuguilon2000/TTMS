@@ -63,7 +63,7 @@ while ($r = $attendanceQuery->fetch_assoc()) {
                 <th class="align-middle col-1 text-center">Batch</th>
                 <th class="align-middle col-2">Subject</th>
                 <th class="align-middle col-2">Trainer/s</th>
-                <th class="align-middle col-1 text-center">Number of Trainees</th>
+                <th class="align-middle col-1 text-center">No. of Trainees</th>
                 <th class="align-middle col-1 text-center">Status</th>
                 <th class="align-middle col-1">Remarks</th>
                 <th class="align-middle col-2 text-center">Action</th>
@@ -90,7 +90,7 @@ while ($r = $attendanceQuery->fetch_assoc()) {
                         <td class='align-middle text-center'>$StatusID</td>
                         <td class='align-middle'>$Remarks</td>
                         <td class='align-middle text-center'>
-                        <button type='button' class='btn btn-outline-primary btn-sm'><i class='bi bi-eye-fill'></i></button>
+                        <button type='button' class='btn btn-outline-primary btn-sm' onclick='view($ID)'><i class='bi bi-eye-fill'></i></button>
                         <button type='button' class='btn btn-outline-primary btn-sm'><i class='bi bi-pencil-fill'></i></button>
                         <button type='button' class='btn btn-outline-danger btn-sm'><i class='bi bi-trash-fill'></i></button>
                         </td>

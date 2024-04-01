@@ -1,12 +1,10 @@
-<header class="border-body mb-3">
-    <div class="container container-fluid">
-        <h2 class="m-0">Dashboard</h2>
-    </div>
-</header>
-
 <main class="container container-fluid mb-3">
 
     <div class="dashboard-page">
+        <header class="border-body mb-3">
+            <h2 class="m-0">Dashboard</h2>
+        </header>
+
         <!-- Search form for filtering the data by date -->
         <form id="search-form">
             <div class="d-flex flex-wrap mb-4">

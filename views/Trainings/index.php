@@ -3,15 +3,14 @@ require(dirname(dirname(__DIR__)) . '/Database.php');
 require(dirname(dirname(__DIR__)) . '/Functions.php');
 ?>
 
-<header class="border-body">
-    <div class="container container-fluid">
-        <h2 class="m-0">Trainings</h2>
-    </div>
-</header>
 
 <main class="container container-fluid mb-3">
 
     <div class="training-page">
+        <header class="border-body">
+            <h2 class="m-0">Trainings</h2>
+        </header>
+
         <form id="search-form">
             <div class="row g-2 mb-3">
                 <div class="col-4 col-md-2">

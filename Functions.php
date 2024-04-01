@@ -3,8 +3,10 @@
 // Get Middle Initials
 function middleInitials($initialArr)
 {
+    $arr = explode(' ',$initialArr);
+
     $initials = '';
-    foreach ($initialArr as $name) {
+    foreach ($arr as $name) {
         $initials .= substr($name, 0, 1);
     }
     return $initials;
@@ -359,6 +361,6 @@ function utilSubjects($utilID)
             return $dataMap[$value] ?? $value;
         }, $explodeData);
 
-        return "• ".implode("<br>• ", $result);
+        return "• " . implode("<br>• ", $result);
     }
 }

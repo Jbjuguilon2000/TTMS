@@ -11,8 +11,7 @@ foreach ($employeeDetails as $r) {
     $EmployeeID = $r['EmployeeID'];
     $LastName = $r['LastName'];
     $FirstName = $r['FirstName'];
-    $MiddleName = explode(' ', $r['MiddleName']);
-    $MI = middleInitials($MiddleName);
+    $MI = middleInitials($r['MiddleName']);
     $ExtName = $r['ExtensionName'];
     $Sex = ($r['Sex'] == 'unknown') ? '' : $r['Sex'];
     $Sex = ($Sex == 'M') ? "Male" : (($Sex == 'F') ? "Female" : $Sex);

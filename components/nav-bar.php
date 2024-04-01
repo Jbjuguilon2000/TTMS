@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-lg bg-white border-bottom border-body sticky-top p-0" data-bs-theme="white">
     <div class="container container-fluid">
         <img src="./Assets/logos/DOTr-MRT3_landscape(d).png" class="logo" alt="DOTr-MRT3">
-        <a class="navbar-brand" href="#">TTMS</a>
+        <a class="navbar-brand" href="index.php">TTMS</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>

@@ -58,3 +58,20 @@ function table(page) {
     },
   });
 }
+
+function view(tID) {
+  $.ajax({
+    url: "views/Trainings/view.php",
+    type: "POST",
+    data: {
+      ID: tID,
+    },
+    success: function (response) {
+      $("#table-loader").hide();
+      $(".training-page").html(response);
+    },
+    error: function () {
+      $("#table-loader").show();
+    },
+  });
+}
