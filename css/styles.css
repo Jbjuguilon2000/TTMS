@@ -13,6 +13,12 @@ form {
   }
 }
 
+td,
+th,
+.page-link {
+  font-size: 10pt;
+}
+
 body {
   background-color: rgb(253, 253, 253);
 }

@@ -8,7 +8,6 @@ $search_name = $_POST['name'];
 $search_designation = $_POST['designation'];
 $search_division = $_POST['division'];
 
-
 $empQuery = "SELECT * FROM employee";
 
 if ($search_name != '') {
@@ -33,9 +32,9 @@ $empQuery .= "  ORDER BY `LastName` ASC LIMIT $start_from,$Limit";
 $employeeQuery = $dbMasterlist->query($empQuery);
 
 ?>
-<div class="table-responsive mb-3">
+<div class="table-responsive mb-3" style="max-height: 600px; overflow-y:auto;">
     <table class="table table-hover">
-        <thead>
+        <thead class="sticky-top">
             <tr>
                 <th class="text-center">Employee ID</th>
                 <th>Name</th>
@@ -65,7 +64,7 @@ $employeeQuery = $dbMasterlist->query($empQuery);
                         <td class='align-middle text-center'>$Sex</td>
                         <td class='align-middle'>$DesignationID</td>
                         <td class='align-middle'>$DivisionID</td>
-                        <td class='align-middle text-center'>
+                        <td class='align-middle text-center' colspan='4'>
                         <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' onclick='view($ID)' data-bs-target='#viewEmployeeModal'>
                         <i class='bi bi-eye-fill'></i>
                         </button></td>

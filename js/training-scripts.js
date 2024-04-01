@@ -30,17 +30,23 @@ $(function () {
 });
 
 function table(page) {
-  var name = $("#search-name").val();
-  var designation = $("#select-designation").val();
-  var division = $("#select-division").val();
+  var course = $("#select-course").val();
+  var batch = $("#search-batch").val();
+  var trainer = $("#select-trainer").val();
+  var status = $("#select-status").val();
+  var startDate = $("#start-date").val();
+  var endDate = $("#end-date").val();
 
   $.ajax({
-    url: "views/Employees/table.php",
+    url: "views/Trainings/table.php",
     type: "POST",
     data: {
-      name: name,
-      designation: designation,
-      division: division,
+      course: course,
+      batch: batch,
+      trainer: trainer,
+      status: status,
+      startDate: startDate,
+      endDate: endDate,
       page: page,
     },
     success: function (response) {
@@ -49,24 +55,6 @@ function table(page) {
     },
     error: function () {
       $("#table-loader").show();
-    },
-  });
-}
-
-function view(id) {
-  $("#hiddenID").val(id);
-  $.ajax({
-    url: "views/Employees/view.php",
-    type: "POST",
-    data: {
-      ID: id,
-    },
-    success: function (response) {
-      $("#view-loader").hide();
-      $("#view").html(response);
-    },
-    error: function () {
-      $("#view-loader").show();
     },
   });
 }

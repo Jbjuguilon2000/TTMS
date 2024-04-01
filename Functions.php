@@ -10,6 +10,77 @@ function middleInitials($initialArr)
     return $initials;
 }
 
+function getAllEmployee()
+{
+    global $dbMasterlist;
+    $selectQuery = $dbMasterlist->query("SELECT * FROM employee");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllDivision()
+{
+    global $dbMasterlist;
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_division");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllDesignation()
+{
+    global $dbMasterlist;
+    $selectQuery = $dbMasterlist->query("SELECT * FROM util_designation");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllCourse()
+{
+    global $dbTTMS;
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_course");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllSubject()
+{
+    global $dbTTMS;
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_subject");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllTrainers()
+{
+    global $dbTTMS;
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_trainers");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+function getAllTrainingResults()
+{
+    global $dbTTMS;
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_results");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
+function getAllTrainingStatus()
+{
+    global $dbTTMS;
+    $selectQuery = $dbTTMS->query("SELECT * FROM util_status");
+    $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+    return $fetchData;
+}
+
 function spanBadge($data)
 {
     switch ($data) {
@@ -269,5 +340,25 @@ function utilTrainers($utilID)
         }, $trainers);
 
         return implode("<br>", $trainerResult);
+    }
+}
+
+function utilSubjects($utilID)
+{
+    global $dbTTMS;
+
+    if ($utilID !== null) {
+        $explodeData = explode(',', $utilID);
+
+        $selectQuery = $dbTTMS->query("SELECT * FROM `util_subject`");
+        $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+        $dataMap = array_column($fetchData, 'Subject', 'ID');
+
+        $result = array_map(function ($value) use ($dataMap) {
+            return $dataMap[$value] ?? $value;
+        }, $explodeData);
+
+        return "• ".implode("<br>• ", $result);
     }
 }
