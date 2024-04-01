@@ -18,18 +18,46 @@ foreach ($trainingData as $r) {
     $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));
 }
 
-$attendanceQuery = $dbTTMS->query("SELECT * FROM attendance WHERE TrainingID = '$tID'");
-$attendanceData = $attendanceQuery->fetch_all(MYSQLI_ASSOC);
-
 $employeeQuery = $dbMasterlist->query("SELECT * FROM employee");
 $employeeData = $employeeQuery->fetch_all(MYSQLI_ASSOC);
 
 foreach ($employeeData as $r) {
     $LastName = $r['LastName'];
     $FirstName = $r['FirstName'];
-    $MI = $r['MiddleName'];
-
+    $MI = middleInitials($r['MiddleName']);
+    $NameExt = $r['ExtensionName'];
+    $FullName[$r['ID']] = "$LastName, $FirstName $MI. $NameExt";
+    $EmployeeID[$r['ID']] = $r['EmployeeID'];
+    $DesignationID[$r['ID']] = $r['DesignationID'];
+    $DivisionID[$r['ID']] = $r['DivisionID'];
 }
+
+$attendanceQuery = $dbTTMS->query("SELECT * FROM attendance WHERE TrainingID = '$tID'");
+$attendanceData = $attendanceQuery->fetch_all(MYSQLI_ASSOC);
+
+$Attendees = array();
+
+foreach ($attendanceData as $r) {
+    $Attendee = array(
+        'ResultID' => $r['ResultID'],
+        'GroupNo' => $r['GroupNo'],
+        'Remarks' => $r['Remarks'],
+        'Name' => $FullName[$r['EmployeeID']],
+        'MRT3ID' => $EmployeeID[$r['EmployeeID']],
+        'Designation' => $DesignationID[$r['EmployeeID']],
+        'Division' => $DivisionID[$r['EmployeeID']],
+    );
+
+    $Attendees[] = $Attendee;
+}
+
+// Sort attendees array by FullName
+usort($Attendees, function ($a, $b) {
+    if ($a['GroupNo'] == $b['GroupNo']) {
+        return strcmp($a['Name'], $b['Name']);
+    }
+    return $a['GroupNo'] - $b['GroupNo'];
+});
 
 ?>
 <div class="my-3">
@@ -41,7 +69,7 @@ foreach ($employeeData as $r) {
     </nav>
 </div>
 
-<div class="rounded shadow py-3 px-4 mb-3">
+<div class="rounded border border-5 py-3 px-4">
     <div class="row">
         <div class="col-md-8">
             <h5><?= $CourseID ?> Batch <?= $BatchNo ?></h5>
@@ -64,46 +92,64 @@ foreach ($employeeData as $r) {
             <p class="m-0"><strong>Subject/s:</strong></p>
             <p><?= $SubjectID ?></p>
         </div>
-
     </div>
 </div>
+<hr>
+<h5>Attendees</h5>
 <div class="table-responsive">
     <table class="table table-hover">
         <thead>
             <tr>
-                <th>#</th>
+                <th class="text-center">#</th>
                 <th>Employee ID</th>
                 <th>Name</th>
                 <th>Designation</th>
                 <th>Division</th>
-                <th>Group No</th>
-                <th>Results</th>
+                <th class="text-center">Group No</th>
+                <th class="text-center">Results</th>
                 <th>Remarks</th>
-                <th>Action</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             <?php
-            $Count = 1;
-            foreach ($attendanceData as $r) {
-                $eID = $r['EmployeeID'];
-                $ResultID = spanBadge(utilResults($r['ResultID']));
-                $GroupNo = $r['GroupNo'];
-                $Remarks = $r['Remarks'];
+            if (isset($Attendees)) {
+                $Count = 1;
+                foreach ($Attendees as $r) {
+                    $MRT3ID = $r['MRT3ID'];
+                    $Name = $r['Name'];
+                    $Designation = utilDesignationID($r['Designation']);
+                    $Division = utilDivisionID($r['Division']);
+                    $GroupNo = $r['GroupNo'];
+                    $ResultID = spanBadge(utilResults($r['ResultID']));
+                    $Remarks = $r['Remarks'];
 
-                echo "<tr>
-                    <td class='align-middle'>$Count</td>
-                    <td class='align-middle'>$eID</td>
-                    <td class='align-middle'>$eID</td>
-                    <td class='align-middle'>$eID</td>
-                    <td class='align-middle'>$eID</td>
-                    <td class='align-middle'>$GroupNo</td>
-                    <td class='align-middle'>$ResultID</td>
+                    echo "<tr>
+                    <td class='align-middle text-center'>$Count</td>
+                    <td class='align-middle'>$MRT3ID</td>
+                    <td class='align-middle'>$Name</td>
+                    <td class='align-middle'>$Designation</td>
+                    <td class='align-middle'>$Division</td>
+                    <td class='align-middle text-center'>$GroupNo</td>
+                    <td class='align-middle text-center'>$ResultID</td>
                     <td class='align-middle'>$Remarks</td>
-                    <td class='align-middle'><button class='btn btn-outline-secondary btn-sm'><i class='bi bi-pencil-fill'></i></button></td>
-                </tr>";
+                    <td class='align-middle text-center'><button class='btn btn-outline-secondary btn-sm'><i class='bi bi-pencil-fill'></i></button></td>
+                    </tr>";
 
-                $Count++;
+                    $Count++;
+                }
+            } else {
+                echo "<tr>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    <td class='align-middle'>-</td>
+                    </tr>";
             }
             ?>
         </tbody>
