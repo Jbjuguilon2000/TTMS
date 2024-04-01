@@ -36,12 +36,12 @@ $employeeQuery = $dbMasterlist->query($empQuery);
     <table class="table table-hover">
         <thead class="sticky-top">
             <tr>
-                <th class="text-center">Employee ID</th>
-                <th>Name</th>
-                <th class="text-center">Sex</th>
-                <th>Designation</th>
-                <th>Division</th>
-                <th class="text-center">Action</th>
+                <th class="col-1">Employee ID</th>
+                <th class="col-3 ">Name</th>
+                <th class="col-1 text-center">Sex</th>
+                <th class="col-4 ">Designation</th>
+                <th class="col-2 ">Division</th>
+                <th class="col-1 text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -59,13 +59,13 @@ $employeeQuery = $dbMasterlist->query($empQuery);
                 $DivisionID = utilDivisionID($r['DivisionID']);
 
                 echo "<tr>
-                        <td class='align-middle text-center'>$EmployeeID</td>
+                        <td class='align-middle'>$EmployeeID</td>
                         <td class='align-middle'>$LastName, $FirstName ($MI) $ExtName</td>
                         <td class='align-middle text-center'>$Sex</td>
                         <td class='align-middle'>$DesignationID</td>
                         <td class='align-middle'>$DivisionID</td>
                         <td class='align-middle text-center' colspan='4'>
-                        <button type='button' class='btn btn-primary btn-sm' data-bs-toggle='modal' onclick='view($ID)' data-bs-target='#viewEmployeeModal'>
+                        <button type='button' class='btn btn-outline-primary btn-sm' data-bs-toggle='modal' onclick='view($ID)' data-bs-target='#viewEmployeeModal'>
                         <i class='bi bi-eye-fill'></i>
                         </button></td>
                     </tr>";

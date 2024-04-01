@@ -5,7 +5,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
 
 <header class="border-body">
     <div class="container container-fluid">
-        <h3 class="m-0">Trainings</h3>
+        <h2 class="m-0">Trainings</h2>
     </div>
 </header>
 
@@ -73,7 +73,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
             </div>
         </form>
 
-
+        <hr>
         <div class="my-3 d-flex justify-content-end">
             <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Training</button>
         </div>

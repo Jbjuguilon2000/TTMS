@@ -11,7 +11,6 @@ $search_status = $_POST['status'];
 $start_date = $_POST['startDate'];
 $end_date = $_POST['endDate'];
 
-
 $trnQuery = "SELECT * FROM trainings ";
 
 if ($search_course != '') {
@@ -33,6 +32,14 @@ if ($search_status != '') {
     $trnQuery .= $separator . " StatusID = '$search_status' ";
 }
 
+if ($start_date != "") {
+    if ($end_date == '') {
+        $end_date = date("Y-m-d", strtotime("last day of this month"));
+    }
+    $separator = ($search_course || $search_batch || $search_trainer || $search_status) ? " AND " : " WHERE ";
+    $trnQuery .= $separator . " (StartDate BETWEEN '$start_date' AND '$end_date') ";
+}
+
 
 $total_records = mysqli_num_rows($dbTTMS->query($trnQuery));
 $total_pages = ceil($total_records / $Limit);
@@ -52,14 +59,14 @@ while ($r = $attendanceQuery->fetch_assoc()) {
     <table class="table table-hover">
         <thead class="sticky-top">
             <tr>
-                <th class="align-middle">Course</th>
-                <th class="align-middle text-center">Batch</th>
-                <th class="align-middle">Subject</th>
-                <th class="align-middle">Trainer/s</th>
-                <th class="align-middle text-center">Number of Trainees</th>
-                <th class="align-middle text-center">Status</th>
-                <th class="align-middle">Remarks</th>
-                <th class="align-middle text-center">Action</th>
+                <th class="align-middle col-2">Course</th>
+                <th class="align-middle col-1 text-center">Batch</th>
+                <th class="align-middle col-2">Subject</th>
+                <th class="align-middle col-2">Trainer/s</th>
+                <th class="align-middle col-1 text-center">Number of Trainees</th>
+                <th class="align-middle col-1 text-center">Status</th>
+                <th class="align-middle col-1">Remarks</th>
+                <th class="align-middle col-2 text-center">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -83,8 +90,8 @@ while ($r = $attendanceQuery->fetch_assoc()) {
                         <td class='align-middle text-center'>$StatusID</td>
                         <td class='align-middle'>$Remarks</td>
                         <td class='align-middle text-center'>
-                        <button type='button' class='btn btn-outline-secondary btn-sm'><i class='bi bi-eye-fill'></i></button>
-                        <button type='button' class='btn btn-outline-secondary btn-sm'><i class='bi bi-pencil-fill'></i></button>
+                        <button type='button' class='btn btn-outline-primary btn-sm'><i class='bi bi-eye-fill'></i></button>
+                        <button type='button' class='btn btn-outline-primary btn-sm'><i class='bi bi-pencil-fill'></i></button>
                         <button type='button' class='btn btn-outline-danger btn-sm'><i class='bi bi-trash-fill'></i></button>
                         </td>
                     </tr>";

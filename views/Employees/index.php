@@ -63,6 +63,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
             </div>
         </form>
 
+        <hr>
         <div>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="spinner-border text-primary" role="status" id="table-loader"></div>
