@@ -75,3 +75,20 @@ function view(tID) {
     },
   });
 }
+
+function files(tID) {
+  $.ajax({
+    url: "views/Trainings/files.php",
+    type: "POST",
+    data: {
+      ID: tID,
+    },
+    success: function (response) {
+      $("#table-loader").hide();
+      $(".training-page").html(response);
+    },
+    error: function () {
+      $("#table-loader").show();
+    },
+  });
+}

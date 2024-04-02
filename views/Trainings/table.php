@@ -55,7 +55,7 @@ while ($r = $attendanceQuery->fetch_assoc()) {
 
 ?>
 
-<div class="table-responsive mb-3" style="max-height: 500px; overflow-y:auto;">
+<div class="table-responsive mb-3" style="max-height: 550px; overflow-y:auto;">
     <table class="table table-hover">
         <thead class="sticky-top">
             <tr>

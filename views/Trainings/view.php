@@ -60,16 +60,21 @@ usort($Attendees, function ($a, $b) {
 });
 
 ?>
-<div class="my-3">
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php">Trainings</a></li>
-            <li class="breadcrumb-item active" aria-current="page">view</li>
-        </ol>
-    </nav>
+<div class="my-3 d-flex justify-content-between">
+    <div>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a class="text-muted" href="index.php">All Trainings</a></li>
+                <li class="breadcrumb-item active" aria-current="page"><strong>Training</strong></li>
+            </ol>
+        </nav>
+    </div>
+    <div>
+        <button class="btn btn-outline-secondary" onclick="files(<?= $tID ?>)"><i class="bi bi-folder-fill h6 align-middle me-1"></i> Files</button>
+    </div>
 </div>
 
-<div class="rounded border border-5 py-3 px-4">
+<div class="bg-white py-3 px-4">
     <div class="row">
         <div class="col-md-8">
             <h5><?= $CourseID ?> Batch <?= $BatchNo ?></h5>
@@ -80,7 +85,7 @@ usort($Attendees, function ($a, $b) {
     </div>
     <hr>
     <div class="row">
-        <div class="col-md-5">
+        <div class="col-md-6">
             <p class="m-0"><strong>Date:</strong></p>
             <p><?= $TrainingDate ?></p>
             <p class="m-0"><strong>Trainer/s:</strong></p>
@@ -88,15 +93,18 @@ usort($Attendees, function ($a, $b) {
             <p class="m-0"><strong>Remarks:</strong></p>
             <p><?= $Remarks ?></p>
         </div>
-        <div class="col-md-5">
+        <div class="col-md-6">
             <p class="m-0"><strong>Subject/s:</strong></p>
             <p><?= $SubjectID ?></p>
         </div>
     </div>
 </div>
 <hr>
-<h5>Attendees</h5>
-<div class="table-responsive">
+<div class="mb-3 d-flex justify-content-between align-items-center">
+    <h3>Attendee List</h3>
+    <button class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Attendees</button>
+</div>
+<div class="table-responsive ">
     <table class="table table-hover">
         <thead>
             <tr>
@@ -113,7 +121,8 @@ usort($Attendees, function ($a, $b) {
         </thead>
         <tbody>
             <?php
-            if (isset($Attendees)) {
+
+            if (isset($Attendee)) {
                 $Count = 1;
                 foreach ($Attendees as $r) {
                     $MRT3ID = $r['MRT3ID'];
@@ -140,16 +149,16 @@ usort($Attendees, function ($a, $b) {
                 }
             } else {
                 echo "<tr>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    <td class='align-middle'>-</td>
-                    </tr>";
+                <td class='align-middle text-center'>-</td>
+                <td class='align-middle'>-</td>
+                <td class='align-middle'>-</td>
+                <td class='align-middle'>-</td>
+                <td class='align-middle'>-</td>
+                <td class='align-middle text-center'>-</td>
+                <td class='align-middle text-center'>-</td>
+                <td class='align-middle'>-</td>
+                <td class='align-middle text-center'><button class='btn btn-outline-secondary btn-sm'><i class='bi bi-pencil-fill'></i></button></td>
+                </tr>";
             }
             ?>
         </tbody>

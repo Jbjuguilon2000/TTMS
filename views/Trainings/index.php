@@ -7,13 +7,17 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
 <main class="container container-fluid mb-3">
 
     <div class="training-page">
-        <header class="border-body">
+        <header class="border-body d-flex justify-content-between">
             <h2 class="m-0">Trainings</h2>
+            <div>
+                <button class="btn text-muted me-1"><i class="bi bi-printer-fill h5 align-middle me-1"></i> Print</button>
+                <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Training</button>
+            </div>
         </header>
 
         <form id="search-form">
             <div class="row g-2 mb-3">
-                <div class="col-4 col-md-2">
+                <div class="col-4 col-md-3">
                     <label for="select-course">Course</label>
                     <select id="select-course" class="form-select">
                         <option selected value=''>-</option>
@@ -43,7 +47,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
                         ?>
                     </select>
                 </div>
-                <div class="col-3 col-md-2">
+                <div class="col-2 col-md-1">
                     <label for="select-status">Status</label>
                     <select id="select-status" class="form-select">
                         <option selected value=''>-</option>
@@ -71,12 +75,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
                 </div>
             </div>
         </form>
-
         <hr>
-        <div class="my-3 d-flex justify-content-end">
-            <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Training</button>
-        </div>
-
         <div>
             <div class="d-flex align-items-center justify-content-center">
                 <div class="spinner-border text-primary" role="status" id="table-loader"></div>
