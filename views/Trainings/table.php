@@ -78,7 +78,7 @@ while ($r = $attendanceQuery->fetch_assoc()) {
                 $BatchNo = $r['BatchNo'];
                 $Remarks = $r['Remarks'];
                 $SubjectID = utilSubjects($r['SubjectID']);
-                $TrainerID = utilTrainers($r['TrainerID']);
+                $TrainerID = trainerMapping($r['TrainerID']);
                 $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
                 $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));
                 echo "<tr>

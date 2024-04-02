@@ -16,6 +16,11 @@ form {
   }
 }
 
+.form-check-label {
+  font-size: 0.8rem;
+  font-weight: 400;
+}
+
 td,
 th,
 .page-link {

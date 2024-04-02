@@ -3,7 +3,7 @@
 // Get Middle Initials
 function middleInitials($initialArr)
 {
-    $arr = explode(' ',$initialArr);
+    $arr = explode(' ', $initialArr);
 
     $initials = '';
     foreach ($arr as $name) {
@@ -325,7 +325,7 @@ function utilCourse($utilID)
     return $data;
 }
 
-function utilTrainers($utilID)
+function trainerMapping($utilID)
 {
     global $dbTTMS;
 
@@ -342,6 +342,26 @@ function utilTrainers($utilID)
         }, $trainers);
 
         return implode("<br>", $trainerResult);
+    }
+}
+
+function divisionMapping($utilID)
+{
+    global $dbMasterlist;
+
+    if ($utilID !== null) {
+        $divisions = explode(',', $utilID);
+
+        $selectQuery = $dbMasterlist->query("SELECT * FROM `util_division`");
+        $fetchData = $selectQuery->fetch_all(MYSQLI_ASSOC);
+
+        $divisionMap = array_column($fetchData, 'Division', 'ID');
+
+        $divisionResults = array_map(function ($value) use ($divisionMap) {
+            return $divisionMap[$value] ?? $value;
+        }, $divisions);
+
+        return implode("<br>", $divisionResults);
     }
 }
 

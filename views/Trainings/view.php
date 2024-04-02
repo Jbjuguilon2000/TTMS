@@ -14,7 +14,8 @@ foreach ($trainingData as $r) {
     $Remarks = $r['Remarks'];
     $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
     $SubjectID = utilSubjects($r['SubjectID']);
-    $TrainerID = utilTrainers($r['TrainerID']);
+    $TrainersID = trainerMapping($r['TrainerID']);
+    $DivisionsID = divisionMapping($r['DivisionID']);
     $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));
 }
 
@@ -42,10 +43,10 @@ foreach ($attendanceData as $r) {
         'ResultID' => $r['ResultID'],
         'GroupNo' => $r['GroupNo'],
         'Remarks' => $r['Remarks'],
-        'Name' => $FullName[$r['EmployeeID']],
-        'MRT3ID' => $EmployeeID[$r['EmployeeID']],
-        'Designation' => $DesignationID[$r['EmployeeID']],
-        'Division' => $DivisionID[$r['EmployeeID']],
+        'Name' => (isset($FullName[$r['EmployeeID']])) ? $FullName[$r['EmployeeID']] : '',
+        'MRT3ID' => (isset($EmployeeID[$r['EmployeeID']])) ? $EmployeeID[$r['EmployeeID']] : '',
+        'Designation' => (isset($DesignationID[$r['EmployeeID']])) ? $DesignationID[$r['EmployeeID']] : '0',
+        'Division' => (isset($DivisionID[$r['EmployeeID']])) ? $DivisionID[$r['EmployeeID']] : '0',
     );
 
     $Attendees[] = $Attendee;
@@ -89,7 +90,9 @@ usort($Attendees, function ($a, $b) {
             <p class="m-0"><strong>Date:</strong></p>
             <p><?= $TrainingDate ?></p>
             <p class="m-0"><strong>Trainer/s:</strong></p>
-            <p><?= $TrainerID ?></p>
+            <p><?= $TrainersID ?></p>
+            <p class="m-0"><strong>Division:</strong></p>
+            <p><?= $DivisionsID ?></p>
             <p class="m-0"><strong>Remarks:</strong></p>
             <p><?= $Remarks ?></p>
         </div>
