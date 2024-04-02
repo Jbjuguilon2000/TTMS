@@ -110,7 +110,7 @@
   --bs-border-width: 1px;
   --bs-border-style: solid;
   --bs-border-color: #dee2e6;
-  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.087);
   --bs-border-radius: 0.375rem;
   --bs-border-radius-sm: 0.25rem;
   --bs-border-radius-lg: 0.5rem;
@@ -2005,7 +2005,7 @@ progress {
   display: block;
   width: 100%;
   padding: 0.375rem 0.75rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.5;
   color: var(--bs-body-color);
@@ -2198,7 +2198,7 @@ textarea.form-control-lg {
   display: block;
   width: 100%;
   padding: 0.375rem 2.25rem 0.375rem 0.75rem;
-  font-size: .8rem;
+  font-size: 0.8rem;
   font-weight: 400;
   line-height: 1.5;
   color: var(--bs-body-color);
@@ -2790,7 +2790,7 @@ textarea.form-control.is-valid {
   display: none;
   width: 100%;
   margin-top: 0.25rem;
-  font-size: 0.875em;
+  font-size: 0.7em;
   color: var(--bs-form-invalid-color);
 }
 .invalid-tooltip {
@@ -2885,7 +2885,7 @@ textarea.form-control.is-invalid {
   --bs-btn-padding-x: 0.75rem;
   --bs-btn-padding-y: 0.375rem;
   --bs-btn-font-family: ;
-  --bs-btn-font-size: .8rem;
+  --bs-btn-font-size: 0.8rem;
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.5;
   --bs-btn-color: var(--bs-body-color);
@@ -3243,7 +3243,7 @@ fieldset:disabled .btn {
   --bs-btn-disabled-border-color: transparent;
   --bs-btn-box-shadow: 0 0 0 #000;
   --bs-btn-focus-shadow-rgb: 49, 132, 253;
-  text-decoration: underline;
+  text-decoration: none;
 }
 .btn-link:focus-visible {
   color: var(--bs-btn-color);
@@ -3329,7 +3329,7 @@ fieldset:disabled .btn {
   --bs-dropdown-padding-x: 0;
   --bs-dropdown-padding-y: 0.5rem;
   --bs-dropdown-spacer: 0.125rem;
-  --bs-dropdown-font-size: 1rem;
+  --bs-dropdown-font-size: 0.8rem;
   --bs-dropdown-color: var(--bs-body-color);
   --bs-dropdown-bg: var(--bs-body-bg);
   --bs-dropdown-border-color: var(--bs-border-color-translucent);
@@ -6771,7 +6771,7 @@ fieldset:disabled .btn {
   ) !important;
 }
 .text-bg-warning {
-  color: #FFF !important;
+  color: #fff !important;
   background-color: RGBA(
     var(--bs-warning-rgb),
     var(--bs-bg-opacity, 1)

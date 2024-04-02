@@ -21,7 +21,7 @@
 
                 <li class="nav-item dropdown">
                     <button class="btn btn-link nav-link rounded-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Dropdown
+                        <i class="bi bi-gear-fill"></i>
                     </button>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="#">Profile</a></li>

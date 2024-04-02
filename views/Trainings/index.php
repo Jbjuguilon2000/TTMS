@@ -11,7 +11,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
             <h2 class="m-0">Trainings</h2>
             <div>
                 <button class="btn text-muted me-1"><i class="bi bi-printer-fill h5 align-middle me-1"></i> Print</button>
-                <button class="btn btn-primary"><i class="bi bi-plus-lg"></i> Add Training</button>
+                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTrainingModal"><i class="bi bi-plus-lg"></i> Add Training</button>
             </div>
         </header>
 
@@ -82,9 +82,11 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
             </div>
             <div id="table"></div>
         </div>
-
-
     </div>
+
+    <?php
+    include(dirname(dirname(__DIR__)) . '/components/Trainings/addTrainingModal.php');
+    ?>
 
 
 </main>

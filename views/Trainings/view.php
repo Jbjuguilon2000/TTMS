@@ -102,7 +102,22 @@ usort($Attendees, function ($a, $b) {
 <hr>
 <div class="mb-3 d-flex justify-content-between align-items-center">
     <h3>Attendee List</h3>
-    <button class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Attendees</button>
+    <div class="d-flex">
+        <div class="dropdown">
+            <button class="btn btn-link text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-printer-fill h5 align-middle"></i> Print
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Memorandum</a></li>
+                <li><a class="dropdown-item" href="#">List of Attendees</a></li>
+                <li><a class="dropdown-item" href="#">Completion Report</a></li>
+                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(Refresher)</span></a></li>
+                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/ Subjects)</span></a></li>
+                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/o Subject)</span></a></li>
+            </ul>
+            <button class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Attendees</button>
+        </div>
+    </div>
 </div>
 <div class="table-responsive ">
     <table class="table table-hover">

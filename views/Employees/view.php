@@ -22,7 +22,7 @@ foreach ($employeeDetails as $r) {
     $AppointmentStatusID = utilAppointment($r['AppointmentStatusID']);
 }
 
-$selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, TrainerID, StartDate, EndDate, BatchNo FROM attendance AS a LEFT JOIN trainings AS t ON a.TrainingID = t.ID WHERE EmployeeID = '$eID'");
+$selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StatusID, TrainerID, StartDate, EndDate, BatchNo FROM attendance AS a LEFT JOIN trainings AS t ON a.TrainingID = t.ID WHERE EmployeeID = '$eID'");
 ?>
 
 
@@ -49,7 +49,7 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, TrainerID, StartDat
                     <th class="text-center">Batch</th>
                     <th>Trainer/s</th>
                     <th class="text-center">Result</th>
-                    <th class="text-center">Action</th>
+                    <th class="text-center">Training Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -59,13 +59,14 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, TrainerID, StartDat
                     $TrainerID = utilTrainers($r['TrainerID']);
                     $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
                     $ResultID = spanBadge(utilResults($r['ResultID']));
+                    $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));
                     $BatchNo = $r['BatchNo'];
                     echo "<tr>
                             <td class='align-middle'>$CourseID<br><span class='text-muted'>$TrainingDate</span></td>
                             <td class='text-center align-middle'>$BatchNo</td>
                             <td class='align-middle'>$TrainerID</td>
                             <td class='text-center align-middle'>$ResultID</td>
-                            <td class='text-center align-middle'><button class='btn btn-outline-secondary btn-sm'><i class='bi bi-box-arrow-in-down-right'></i></button></td>
+                            <td class='text-center align-middle'>$StatusID</td>
                         </tr>";
                 }
                 ?>
