@@ -92,3 +92,62 @@ function files(tID) {
     },
   });
 }
+
+function create() {
+  var get_course = $("#c_course").val();
+  var get_batch = $("#c_batch").val();
+  var get_subjects = $("#c_subjects").val();
+  var get_startdate = $("#c_startdate").val();
+  var get_enddate = $("#c_enddate").val();
+  var get_status = $("#c_status").val();
+  var get_trainers = $("#c_trainers").val();
+  var get_divisions = $("#c_divisions").val();
+  var get_remarks = $("#c_remarks").val();
+
+  $.ajax({
+    url: "views/Trainings/crud.php",
+    type: "POST",
+    data: {
+      create: true,
+      course: get_course,
+      batch: get_batch,
+      subjects: get_subjects,
+      startdate: get_startdate,
+      enddate: get_enddate,
+      status: get_status,
+      trainers: get_trainers,
+      divisions: get_divisions,
+      remarks: get_remarks,
+    },
+    success: function (response) {
+      console.log(response);
+      table();
+    },
+    error: function (response) {
+      console.log(response);
+    },
+  });
+}
+
+function read(tID) {
+  $.ajax({
+    url: "views/Trainings/crud.php",
+    type: "POST",
+    data: {
+      read: true,
+      ID: tID,
+    },
+    success: function (response) {
+      var get = JSON.parse(response)[0];
+      $("#u_course").val(get.CourseID);
+      $("#u_batch").val(get.BatchNo);
+      $("#u_subjects").val(get.SubjectID);
+      $("#u_startdate").val(get.StartDate);
+      $("#u_enddate").val(get.EndDate);
+      $("#u_status").val(get.StatusID);
+      $("#u_trainers").val(get.TrainerID);
+      $("#u_divisions").val(get.DivisionID);
+      $("#u_remarks").val(get.Remarks);
+    },
+  });
+}

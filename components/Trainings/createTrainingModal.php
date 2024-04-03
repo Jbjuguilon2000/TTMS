@@ -144,7 +144,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="createTrainingFormValidation()" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
@@ -153,83 +153,90 @@
 
 <script>
     $(document).ready(function() {
-        var TrainerArray = [];
-        var TrainerArrayLabel = [];
-        var DivisionArray = [];
-        var DivisionArrayLabel = [];
-        var SubjectArray = [];
-        var SubjectArrayLabel = [];
-
-        $('#createTrainingModal form').submit(function(event) {
-            var form = $(this);
-            if (form[0].checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            form.addClass('was-validated');
-        });
+        var TrainerIDArray = [];
+        var TrainerNameArray = [];
+        var DivisionIDArray = [];
+        var DivisionNameArray = [];
+        var SubjectIDArray = [];
+        var SubjectNameArray = [];
 
         $('#createTrainingModal').on('hidden.bs.modal', function() {
             $(this).find('form')[0].reset();
-            TrainerArray = [];
-            TrainerArrayLabel = [];
-            DivisionArray = [];
-            DivisionArrayLabel = [];
-            SubjectArray = [];
-            SubjectArrayLabel = [];
+            TrainerIDArray = [];
+            TrainerNameArray = [];
+            DivisionIDArray = [];
+            DivisionNameArray = [];
+            SubjectIDArray = [];
+            SubjectNameArray = [];
             $(this).find('form').removeClass('was-validated');
         });
 
         for (var checkbox of document.querySelectorAll(".cb_trnr")) {
             checkbox.addEventListener("click", function() {
                 if (this.checked) {
-                    TrainerArray.push(this.value);
-                    TrainerArrayLabel.push(this.getAttribute("name"));
+                    TrainerIDArray.push(this.value);
+                    TrainerNameArray.push(this.getAttribute("name"));
                 } else {
-                    TrainerArray = TrainerArray.filter((e) => e !== this.value);
-                    TrainerArrayLabel = TrainerArrayLabel.filter(
+                    TrainerIDArray = TrainerIDArray.filter((e) => e !== this.value);
+                    TrainerNameArray = TrainerNameArray.filter(
                         (e) => e !== this.getAttribute("name")
                     );
                 }
 
-                $("#c_trainers").val("" + TrainerArray.join(",") + "");
-                $("#select_trainers").val(TrainerArrayLabel.join(", "));
+                $("#c_trainers").val("" + TrainerIDArray.join(",") + "");
+                $("#select_trainers").val(TrainerNameArray.join(", "));
             });
         }
 
         for (var checkbox of document.querySelectorAll(".cb_dvsn")) {
             checkbox.addEventListener("click", function() {
                 if (this.checked) {
-                    DivisionArray.push(this.value);
-                    DivisionArrayLabel.push(this.getAttribute("name"));
+                    DivisionIDArray.push(this.value);
+                    DivisionNameArray.push(this.getAttribute("name"));
                 } else {
-                    DivisionArray = DivisionArray.filter((e) => e !== this.value);
-                    DivisionArrayLabel = DivisionArrayLabel.filter(
+                    DivisionIDArray = DivisionIDArray.filter((e) => e !== this.value);
+                    DivisionNameArray = DivisionNameArray.filter(
                         (e) => e !== this.getAttribute("name")
                     );
                 }
 
-                $("#c_divisions").val("" + DivisionArray.join(",") + "");
-                $("#select_divisions").val(DivisionArrayLabel.join(", "));
+                $("#c_divisions").val("" + DivisionIDArray.join(",") + "");
+                $("#select_divisions").val(DivisionNameArray.join(", "));
             });
         }
 
         for (var checkbox of document.querySelectorAll(".cb_sbjct")) {
             checkbox.addEventListener("click", function() {
                 if (this.checked) {
-                    SubjectArray.push(this.value);
-                    SubjectArrayLabel.push(this.getAttribute("name"));
+                    SubjectIDArray.push(this.value);
+                    SubjectNameArray.push(this.getAttribute("name"));
                 } else {
-                    SubjectArray = SubjectArray.filter((e) => e !== this.value);
-                    SubjectArrayLabel = SubjectArrayLabel.filter(
+                    SubjectIDArray = SubjectIDArray.filter((e) => e !== this.value);
+                    SubjectNameArray = SubjectNameArray.filter(
                         (e) => e !== this.getAttribute("name")
                     );
                 }
 
-                $("#c_subjects").val("" + SubjectArray.join(",") + "");
-                $("#select_subjects").val(SubjectArrayLabel.join(", "));
+                $("#c_subjects").val("" + SubjectIDArray.join(",") + "");
+                $("#select_subjects").val(SubjectNameArray.join(", "));
             });
         }
 
     });
+
+    function createTrainingFormValidation() {
+        var form = $('#createTrainingModal form');
+        if (form[0].checkValidity() === false) {
+            event.preventDefault();
+            event.stopPropagation();
+        }
+        form.addClass('was-validated');
+
+        if (form[0].checkValidity() === true) {
+            // console.log("Valid");
+            create();
+        }
+    }
+
+    
 </script>

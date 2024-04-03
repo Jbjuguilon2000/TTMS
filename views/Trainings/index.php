@@ -85,7 +85,8 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
     </div>
 
     <?php
-    include(dirname(dirname(__DIR__)) . '/components/Trainings/addTrainingModal.php');
+    include(dirname(dirname(__DIR__)) . '/components/Trainings/createTrainingModal.php');
+    include(dirname(dirname(__DIR__)) . '/components/Trainings/updateTrainingModal.php');
     ?>
 
 

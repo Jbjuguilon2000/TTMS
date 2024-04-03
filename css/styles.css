@@ -55,7 +55,8 @@ footer {
 }
 
 .page-link,
-button {
+button,
+.breadcrum-item {
   cursor: pointer;
 }
 

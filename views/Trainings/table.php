@@ -91,7 +91,7 @@ while ($r = $attendanceQuery->fetch_assoc()) {
                         <td class='align-middle'>$Remarks</td>
                         <td class='align-middle text-center'>
                         <button type='button' class='btn btn-outline-primary btn-sm' onclick='view($ID)'><i class='bi bi-eye-fill'></i></button>
-                        <button type='button' class='btn btn-outline-primary btn-sm'><i class='bi bi-pencil-fill'></i></button>
+                        <button type='button' class='btn btn-outline-primary btn-sm' onclick='read($ID)' data-bs-toggle='modal' data-bs-target='#updateTrainingModal'><i class='bi bi-pencil-fill'></i></button>
                         <button type='button' class='btn btn-outline-danger btn-sm'><i class='bi bi-trash-fill'></i></button>
                         </td>
                     </tr>";

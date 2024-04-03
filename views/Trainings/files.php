@@ -14,7 +14,8 @@ foreach ($trainingData as $r) {
     $Remarks = $r['Remarks'];
     $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
     $SubjectID = utilSubjects($r['SubjectID']);
-    $TrainerID = utilTrainers($r['TrainerID']);
+    $TrainersID = trainerMapping($r['TrainerID']);
+    $DivisionsID = divisionMapping($r['DivisionID']);
     $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));
 }
 ?>
@@ -44,7 +45,9 @@ foreach ($trainingData as $r) {
             <p class="m-0"><strong>Date:</strong></p>
             <p><?= $TrainingDate ?></p>
             <p class="m-0"><strong>Trainer/s:</strong></p>
-            <p><?= $TrainerID ?></p>
+            <p><?= $TrainersID ?></p>
+            <p class="m-0"><strong>Division:</strong></p>
+            <p><?= $DivisionsID ?></p>
             <p class="m-0"><strong>Remarks:</strong></p>
             <p><?= $Remarks ?></p>
         </div>
