@@ -298,3 +298,27 @@ function update(page) {
     },
   });
 }
+
+function deleteConfirmation(tID) {
+  $("#hiddenTrainingID").val(tID);
+}
+
+function deleteData(page) {
+  var id = $("#hiddenTrainingID").val();
+  $.ajax({
+    url: "views/Trainings/crud.php",
+    type: "POST",
+    data: {
+      delete: true,
+      id: id,
+    },
+    success: function (response) {
+      console.log(response);
+      table(page);
+      $("#deleteTrainingModal").modal("hide");
+    },
+    error: function (response) {
+      console.log(response);
+    },
+  });
+}

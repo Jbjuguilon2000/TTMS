@@ -4,6 +4,8 @@ $(function () {
     Employees();
   } else if (currentFunction === "Trainings") {
     Trainings();
+  } else if (currentFunction === "FormsEquipment") {
+    FormsEquipment();
   } else {
     Dashboards(); // Default function to call
   }
@@ -19,7 +21,9 @@ function Dashboards() {
       $("#loader").hide();
       $("#main").html(response);
       $(".navbar-nav > .nav-item > .navbtn").removeClass("active");
-      $(".navbar-nav > .nav-item > .navbtn[data-target='Dashboards']").addClass("active");
+      $(".navbar-nav > .nav-item > .navbtn[data-target='Dashboards']").addClass(
+        "active"
+      );
     },
     error: function () {
       $("#loader").hide();
@@ -39,14 +43,16 @@ function Employees() {
       $("#loader").hide();
       $("#main").html(response);
       $(".navbar-nav > .nav-item > .navbtn").removeClass("active");
-      $(".navbar-nav > .nav-item > .navbtn[data-target='Employees']").addClass("active");
+      $(".navbar-nav > .nav-item > .navbtn[data-target='Employees']").addClass(
+        "active"
+      );
     },
     error: function () {
       $("#loader").hide();
       $("#main").html("Error occurred. Please try again.");
     },
   });
-  localStorage.setItem('currentFunction', 'Employees');
+  localStorage.setItem("currentFunction", "Employees");
 }
 
 function Trainings() {
@@ -59,12 +65,36 @@ function Trainings() {
       $("#loader").hide();
       $("#main").html(response);
       $(".navbar-nav > .nav-item > .navbtn").removeClass("active");
-      $(".navbar-nav > .nav-item > .navbtn[data-target='Trainings']").addClass("active");
+      $(".navbar-nav > .nav-item > .navbtn[data-target='Trainings']").addClass(
+        "active"
+      );
     },
     error: function () {
       $("#loader").hide();
       $("#main").html("Error occurred. Please try again.");
     },
   });
-  localStorage.setItem('currentFunction', 'Trainings');
+  localStorage.setItem("currentFunction", "Trainings");
+}
+
+function FormsEquipment() {
+  $("#loader").show();
+
+  $.ajax({
+    url: "views/FormsEquipment/index.php",
+    type: "GET",
+    success: function (response) {
+      $("#loader").hide();
+      $("#main").html(response);
+      $(".navbar-nav > .nav-item > .navbtn").removeClass("active");
+      $(
+        ".navbar-nav > .nav-item > .navbtn[data-target='FormsEquipment']"
+      ).addClass("active");
+    },
+    error: function () {
+      $("#loader").hide();
+      $("#main").html("Error occurred. Please try again.");
+    },
+  });
+  localStorage.setItem("currentFunction", "FormsEquipment");
 }

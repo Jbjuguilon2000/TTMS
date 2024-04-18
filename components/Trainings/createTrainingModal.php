@@ -143,8 +143,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="createTrainingFormValidation(event)" class="btn btn-primary">Submit</button>
+                    <button type="button" class="btn btn-light" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" onclick="createTrainingFormValidation(event)" class="btn btn-primary">Create</button>
                 </div>
             </form>
         </div>

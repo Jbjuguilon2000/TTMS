@@ -19,13 +19,17 @@
                     <button class="btn btn-link rounded-0 nav-link navbtn" data-target='Trainings' onclick="Trainings()">Trainings</button>
                 </li>
 
+                <li class="nav-item">
+                    <button class="btn btn-link rounded-0 nav-link navbtn" data-target='FormsEquipment' onclick="FormsEquipment()">Forms and Equipment</button>
+                </li>
+
                 <li class="nav-item dropdown">
                     <button class="btn btn-link nav-link rounded-0 dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         <i class="bi bi-gear-fill"></i>
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Profile</a></li>
-                        <li><a class="dropdown-item text-danger" href="#">Logout</a></li>
+                        <li><a class="dropdown-item" href="#"><i class="bi bi-info-circle"></i> Help</a></li>
+                        <li><a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-in-left"></i> Logout</a></li>
                     </ul>
                 </li>
 

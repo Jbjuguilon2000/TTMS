@@ -18,7 +18,7 @@ if (isset($_POST['create'])) {
         VALUES ('$course','$batch','$subjects','$startdate','$enddate','$status','$trainers','$divisions','$remarks')");
 
     if ($query) {
-        echo "<span class='feedback-design'>Training Created</span>";
+        echo "Training Created";
     } else {
         echo "failed" . $dbTTMS->error;
     }
@@ -51,11 +51,20 @@ if (isset($_POST['update'])) {
     `TrainerID`='$trainers', `StatusID`='$status', `DivisionID`='$divisions', `SubjectID`='$subjects', `Remarks`='$remarks' WHERE ID = '$id'");
 
     if ($query) {
-        echo "<span class='feedback-design'>Training Updated</span>";
+        echo "Training Updated";
     } else {
         echo "failed" . $dbTTMS->error;
     }
 }
 
 if (isset($_POST['delete'])) {
+    $id = $_POST['id'];
+
+    $query1 = $dbTTMS->query("DELETE FROM `trainings` WHERE ID = '$id'");
+    $query2 = $dbTTMS->query("DELETE FROM `attendance` WHERE TrainingID = '$id'");
+    if ($query1 && $query2) {
+        echo "Training Deleted";
+    } else {
+        echo "failed" . $dbTTMS->error;
+    }
 }
