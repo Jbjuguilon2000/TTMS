@@ -56,7 +56,7 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StatusID, TrainerID
                 <?php
                 while ($r = $selectTraining->fetch_assoc()) {
                     $CourseID = utilCourse($r['CourseID']);
-                    $TrainerID = utilTrainers($r['TrainerID']);
+                    $TrainerID = trainerMapping($r['TrainerID']);
                     $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
                     $ResultID = spanBadge(utilResults($r['ResultID']));
                     $StatusID = spanBadge(utilTrainingStatus($r['StatusID']));

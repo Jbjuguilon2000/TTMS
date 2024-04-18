@@ -24,7 +24,6 @@ if (isset($_POST['create'])) {
     }
 }
 
-
 if (isset($_POST['read'])) {
 
     $ID = $_POST['ID'];
@@ -36,6 +35,7 @@ if (isset($_POST['read'])) {
 }
 
 if (isset($_POST['update'])) {
+    echo "Update";
 }
 
 if (isset($_POST['delete'])) {

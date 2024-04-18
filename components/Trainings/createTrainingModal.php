@@ -39,7 +39,7 @@
                             <div class="form-group mb-2">
                                 <div class="dropdown">
                                     <label for="select_subjects">Subject/s:</label>
-                                    <input type="hidden" id="c_subjects">
+                                    <input type="text" id="c_subjects">
                                     <input type="text" class="form-control form-select" placeholder="-" id="select_subjects" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" required>
                                     <ul style=" max-height: 200px; overflow-y:auto;" class="dropdown-menu dropdown-menu-end">
                                         <?php
@@ -51,7 +51,7 @@
                                         }
                                         ?>
                                     </ul>
-                                    <div class="invalid-feedback">Select trainer/s for the subjects.</div>
+                                    <div class="invalid-feedback">Select subject/s for the training.</div>
                                 </div>
                             </div>
                         </div>
@@ -89,7 +89,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <div class="dropdown">
                                     <label for="select_trainers">Trainer/s:</label>
@@ -110,7 +110,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <div class="form-group mb-2">
                                 <div class="dropdown">
                                     <label for="select_divisions">Division/s:</label>
@@ -126,7 +126,7 @@
                                         }
                                         ?>
                                     </ul>
-                                    <div class="invalid-feedback">Select trainer/s for the division.</div>
+                                    <div class="invalid-feedback">Select trainees division.</div>
                                 </div>
                             </div>
                         </div>
@@ -144,99 +144,9 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" onclick="createTrainingFormValidation()" class="btn btn-primary">Submit</button>
+                    <button type="button" onclick="createTrainingFormValidation(event)" class="btn btn-primary">Submit</button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
-<script>
-    $(document).ready(function() {
-        var TrainerIDArray = [];
-        var TrainerNameArray = [];
-        var DivisionIDArray = [];
-        var DivisionNameArray = [];
-        var SubjectIDArray = [];
-        var SubjectNameArray = [];
-
-        $('#createTrainingModal').on('hidden.bs.modal', function() {
-            $(this).find('form')[0].reset();
-            TrainerIDArray = [];
-            TrainerNameArray = [];
-            DivisionIDArray = [];
-            DivisionNameArray = [];
-            SubjectIDArray = [];
-            SubjectNameArray = [];
-            $(this).find('form').removeClass('was-validated');
-        });
-
-        for (var checkbox of document.querySelectorAll(".cb_trnr")) {
-            checkbox.addEventListener("click", function() {
-                if (this.checked) {
-                    TrainerIDArray.push(this.value);
-                    TrainerNameArray.push(this.getAttribute("name"));
-                } else {
-                    TrainerIDArray = TrainerIDArray.filter((e) => e !== this.value);
-                    TrainerNameArray = TrainerNameArray.filter(
-                        (e) => e !== this.getAttribute("name")
-                    );
-                }
-
-                $("#c_trainers").val("" + TrainerIDArray.join(",") + "");
-                $("#select_trainers").val(TrainerNameArray.join(", "));
-            });
-        }
-
-        for (var checkbox of document.querySelectorAll(".cb_dvsn")) {
-            checkbox.addEventListener("click", function() {
-                if (this.checked) {
-                    DivisionIDArray.push(this.value);
-                    DivisionNameArray.push(this.getAttribute("name"));
-                } else {
-                    DivisionIDArray = DivisionIDArray.filter((e) => e !== this.value);
-                    DivisionNameArray = DivisionNameArray.filter(
-                        (e) => e !== this.getAttribute("name")
-                    );
-                }
-
-                $("#c_divisions").val("" + DivisionIDArray.join(",") + "");
-                $("#select_divisions").val(DivisionNameArray.join(", "));
-            });
-        }
-
-        for (var checkbox of document.querySelectorAll(".cb_sbjct")) {
-            checkbox.addEventListener("click", function() {
-                if (this.checked) {
-                    SubjectIDArray.push(this.value);
-                    SubjectNameArray.push(this.getAttribute("name"));
-                } else {
-                    SubjectIDArray = SubjectIDArray.filter((e) => e !== this.value);
-                    SubjectNameArray = SubjectNameArray.filter(
-                        (e) => e !== this.getAttribute("name")
-                    );
-                }
-
-                $("#c_subjects").val("" + SubjectIDArray.join(",") + "");
-                $("#select_subjects").val(SubjectNameArray.join(", "));
-            });
-        }
-
-    });
-
-    function createTrainingFormValidation() {
-        var form = $('#createTrainingModal form');
-        if (form[0].checkValidity() === false) {
-            event.preventDefault();
-            event.stopPropagation();
-        }
-        form.addClass('was-validated');
-
-        if (form[0].checkValidity() === true) {
-            // console.log("Valid");
-            create();
-        }
-    }
-
-    
-</script>
