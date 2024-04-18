@@ -3,7 +3,7 @@ require(dirname(dirname(__DIR__)) . '/Database.php');
 require(dirname(dirname(__DIR__)) . '/Functions.php');
 ?>
 
-
+<div class="feedback-msg"></div>
 <main class="container container-fluid mb-3">
 
     <div class="training-page">
@@ -87,6 +87,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
     <?php
     include(dirname(dirname(__DIR__)) . '/components/Trainings/createTrainingModal.php');
     include(dirname(dirname(__DIR__)) . '/components/Trainings/updateTrainingModal.php');
+    include(dirname(dirname(__DIR__)) . '/components/Trainings/deleteTrainingModal.php');
     ?>
 
 

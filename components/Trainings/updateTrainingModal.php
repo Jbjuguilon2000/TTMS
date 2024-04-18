@@ -39,7 +39,7 @@
                             <div class="form-group mb-2">
                                 <div class="dropdown">
                                     <label for="update_subjects">Subject/s:</label>
-                                    <input type="text" id="u_subjects">
+                                    <input type="hidden" id="u_subjects">
                                     <input type="text" class="form-control form-select" placeholder="-" id="update_subjects" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" required>
                                     <ul style=" max-height: 200px; overflow-y:auto;" class="dropdown-menu dropdown-menu-end">
                                         <?php
@@ -141,6 +141,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <input type="hidden" id="hiddenTrainingID" value="">
                     <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                     <button type="button" onclick="updateTrainingFormValidation(event)" class="btn btn-primary">Submit</button>
                 </div>

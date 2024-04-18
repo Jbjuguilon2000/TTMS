@@ -18,7 +18,7 @@ if (isset($_POST['create'])) {
         VALUES ('$course','$batch','$subjects','$startdate','$enddate','$status','$trainers','$divisions','$remarks')");
 
     if ($query) {
-        echo "created";
+        echo "<span class='feedback-design'>Training Created</span>";
     } else {
         echo "failed" . $dbTTMS->error;
     }
@@ -35,7 +35,26 @@ if (isset($_POST['read'])) {
 }
 
 if (isset($_POST['update'])) {
-    echo "Update";
+
+    $id = $_POST['id'];
+    $course = $_POST['course'];
+    $batch = $_POST['batch'];
+    $subjects = $_POST['subjects'];
+    $startdate = $_POST['startdate'];
+    $enddate = $_POST['enddate'];
+    $status = $_POST['status'];
+    $trainers = $_POST['trainers'];
+    $divisions = $_POST['divisions'];
+    $remarks = $_POST['remarks'];
+
+    $query = $dbTTMS->query("UPDATE `trainings` SET `CourseID`='$course', `BatchNo`='$batch', `StartDate`='$startdate', `EndDate`='$enddate', 
+    `TrainerID`='$trainers', `StatusID`='$status', `DivisionID`='$divisions', `SubjectID`='$subjects', `Remarks`='$remarks' WHERE ID = '$id'");
+
+    if ($query) {
+        echo "<span class='feedback-design'>Training Updated</span>";
+    } else {
+        echo "failed" . $dbTTMS->error;
+    }
 }
 
 if (isset($_POST['delete'])) {

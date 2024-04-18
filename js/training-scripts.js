@@ -217,7 +217,11 @@ function handleCheckbox(checkboxSelector, fieldSelector, updateFieldSelector) {
   });
 }
 
-function updateHandleCheckbox(checkboxSelector, fieldSelector, updateFieldSelector) {
+function updateHandleCheckbox(
+  checkboxSelector,
+  fieldSelector,
+  updateFieldSelector
+) {
   var values = $(fieldSelector).val().split(",");
   var nameArray = [];
   $(checkboxSelector).each(function () {
@@ -258,15 +262,15 @@ function updateTrainingFormValidation(event) {
 
 function update(page) {
   var get_id = $("#hiddenTrainingID").val();
-  var get_course = $("#c_course").val();
-  var get_batch = $("#c_batch").val();
-  var get_subjects = $("#c_subjects").val();
-  var get_startdate = $("#c_startdate").val();
-  var get_enddate = $("#c_enddate").val();
-  var get_status = $("#c_status").val();
-  var get_trainers = $("#c_trainers").val();
-  var get_divisions = $("#c_divisions").val();
-  var get_remarks = $("#c_remarks").val();
+  var get_course = $("#u_course").val();
+  var get_batch = $("#u_batch").val();
+  var get_subjects = $("#u_subjects").val();
+  var get_startdate = $("#u_startdate").val();
+  var get_enddate = $("#u_enddate").val();
+  var get_status = $("#u_status").val();
+  var get_trainers = $("#u_trainers").val();
+  var get_divisions = $("#u_divisions").val();
+  var get_remarks = $("#u_remarks").val();
 
   $.ajax({
     url: "views/Trainings/crud.php",

@@ -39,7 +39,7 @@
                             <div class="form-group mb-2">
                                 <div class="dropdown">
                                     <label for="select_subjects">Subject/s:</label>
-                                    <input type="text" id="c_subjects">
+                                    <input type="hidden" id="c_subjects">
                                     <input type="text" class="form-control form-select" placeholder="-" id="select_subjects" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false" required>
                                     <ul style=" max-height: 200px; overflow-y:auto;" class="dropdown-menu dropdown-menu-end">
                                         <?php
