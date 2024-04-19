@@ -107,7 +107,7 @@ function spanBadge($data)
 // Date Formater
 function trainingDateFormat($startDate, $endDate)
 {
-    if ($startDate == "0000-00-00") {
+    if ($startDate == null) {
         return "";
     }
 
@@ -304,9 +304,10 @@ function utilTrainingStatus($utilID)
 function utilCourse($utilID)
 {
     global $dbTTMS;
+
     $whereID = '';
     if ($utilID != null) {
-        if ($utilID !== 0) {
+        if ($utilID != 0) {
             $whereID = 'WHERE ID = ' . $utilID;
         }
     }

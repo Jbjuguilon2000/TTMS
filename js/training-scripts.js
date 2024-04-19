@@ -135,7 +135,7 @@ function createTrainingFormValidation(event) {
   }
 }
 
-function create() {
+function create(page) {
   var get_course = $("#c_course").val();
   var get_batch = $("#c_batch").val();
   var get_subjects = $("#c_subjects").val();
@@ -163,7 +163,7 @@ function create() {
     },
     success: function (response) {
       console.log(response);
-      table();
+      table(page);
       $("#createTrainingModal").modal("hide");
     },
     error: function (response) {
@@ -304,6 +304,7 @@ function deleteConfirmation(tID) {
 }
 
 function deleteData(page) {
+  console.log(page);
   var id = $("#hiddenTrainingID").val();
   $.ajax({
     url: "views/Trainings/crud.php",
@@ -320,5 +321,34 @@ function deleteData(page) {
     error: function (response) {
       console.log(response);
     },
+  });
+}
+
+function printAllTraining() {
+  var course = $("#select-course").val();
+  var batch = $("#search-batch").val();
+  var trainer = $("#select-trainer").val();
+  var status = $("#select-status").val();
+  var startDate = $("#start-date").val();
+  var endDate = $("#end-date").val();
+  $.ajax({
+    url: "views/Trainings/print/allTraining.php",
+    type: "POST",
+    data: {
+      course: course,
+      batch: batch,
+      trainer: trainer,
+      status: status,
+      startDate: startDate,
+      endDate: endDate,
+    },
+    success: function (response) {
+      $("#Printer").html(response);
+      $("#Printer").attr("class", "d-none d-print-block");
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    },
+    error: function () {},
   });
 }

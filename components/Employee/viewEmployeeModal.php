@@ -13,8 +13,8 @@
                 <div id="view"></div>
                 <input type="hidden" id="hiddenID" />
             </div>
-            <div class="modal-footer justify-content-center">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-printer me-2"></i>Certificate</button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="printForm()"><i class="bi bi-printer me-2"></i>Certificate</button>
             </div>
         </div>
     </div>

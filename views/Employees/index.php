@@ -5,8 +5,6 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
 
 ?>
 
-
-
 <main class="container container-fluid mb-3">
 
     <div class="employee-page">

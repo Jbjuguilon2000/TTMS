@@ -79,6 +79,7 @@ usort($Attendees, function ($a, $b) {
     <div class="row">
         <div class="col-md-8">
             <h5><?= $CourseID ?> Batch <?= $BatchNo ?></h5>
+            <p class="m-0"><?= $TrainingDate ?></p>
         </div>
         <div class="col-md-4 text-end">
             <p><?= $StatusID ?></p>
@@ -87,18 +88,16 @@ usort($Attendees, function ($a, $b) {
     <hr>
     <div class="row">
         <div class="col-md-6">
-            <p class="m-0"><strong>Date:</strong></p>
-            <p><?= $TrainingDate ?></p>
             <p class="m-0"><strong>Trainer/s:</strong></p>
             <p><?= $TrainersID ?></p>
             <p class="m-0"><strong>Division:</strong></p>
             <p><?= $DivisionsID ?></p>
-            <p class="m-0"><strong>Remarks:</strong></p>
-            <p><?= $Remarks ?></p>
         </div>
         <div class="col-md-6">
             <p class="m-0"><strong>Subject/s:</strong></p>
             <p><?= $SubjectID ?></p>
+            <p class="m-0"><strong>Remarks:</strong></p>
+            <p><?= $Remarks ?></p>
         </div>
     </div>
 </div>

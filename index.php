@@ -14,16 +14,16 @@
 </head>
 
 <body>
-    
+    <div id="Printer"></div>
+    <div class=" d-print-none">
         <?php include('components/nav-bar.php') ?>
-
         <div class="text-center">
             <div class="spinner-border text-primary" role="status" id="loader">
             </div>
         </div>
         <div id="main"></div>
         <?php include('components/copyright.php') ?>
-
+    </div>
 
 
 

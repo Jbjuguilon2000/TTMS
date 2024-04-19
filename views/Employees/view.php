@@ -29,18 +29,17 @@ $selectTraining = $dbTTMS->query("SELECT ResultID, CourseID, StatusID, TrainerID
 <main class="container container-fluid">
 
     <div class="header mb-3">
-        <div class="border-bottom">
-            <div>
-                <p class="float-end"><?= $EmploymentStatusID ?></p>
-                <p class="text-muted"><?= $EmployeeID ?></p>
-                <h1 class="text-uppercase"><?= "$LastName, $FirstName $MI. $ExtName" ?></h1>
-                <p>Sex: <strong><?= $Sex ?></strong></p>
-                <p>Designation: <strong><?= $DesignationID ?></strong></p>
-                <p>Section/Division: <strong><?= "$SectionID / $DivisionID" ?></strong></p>
-                <p>Appointment: <strong><?= $AppointmentStatusID ?></strong></p>
-            </div>
+        <div>
+            <p class="float-end"><?= $EmploymentStatusID ?></p>
+            <p class="text-muted"><?= $EmployeeID ?></p>
+            <h1 class="text-uppercase"><?= "$LastName, $FirstName $MI. $ExtName" ?></h1>
+            <p>Sex: <strong><?= $Sex ?></strong></p>
+            <p>Designation: <strong><?= $DesignationID ?></strong></p>
+            <p>Section/Division: <strong><?= "$SectionID / $DivisionID" ?></strong></p>
+            <p>Appointment: <strong><?= $AppointmentStatusID ?></strong></p>
         </div>
     </div>
+    <hr>
     <div class="table-responsive">
         <table class="table table-hover table-stripped">
             <thead>

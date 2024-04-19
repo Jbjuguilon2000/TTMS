@@ -7,7 +7,7 @@ $(function () {
   } else if (currentFunction === "FormsEquipment") {
     FormsEquipment();
   } else {
-    Dashboards(); // Default function to call
+    Dashboards();
   }
 });
 

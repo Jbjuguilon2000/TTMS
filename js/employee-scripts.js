@@ -70,3 +70,25 @@ function view(id) {
     },
   });
 }
+
+function printForm() {
+  var id = $("#hiddenID").val();
+  $.ajax({
+    url: "views/Employees/print/print.php",
+    type: "POST",
+    data: {
+      ID: id,
+    },
+    success: function (response) {
+      $("#view-loader").hide();
+      $("#Printer").html(response);
+      $("#Printer").attr("class", "d-none d-print-block");
+      setTimeout(() => {
+        window.print();
+      }, 300);
+    },
+    error: function () {
+      $("#view-loader").show();
+    },
+  });
+}

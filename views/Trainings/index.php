@@ -9,7 +9,7 @@ require(dirname(dirname(__DIR__)) . '/Functions.php');
         <header class="border-body d-flex justify-content-between">
             <h2 class="m-0">Trainings</h2>
             <div>
-                <button class="btn text-muted me-1"><i class="bi bi-printer-fill h5 align-middle me-1"></i> Print</button>
+                <button class="btn text-muted me-1" onclick="printAllTraining()"><i class="bi bi-printer-fill h5 align-middle me-1"></i> Print all Training</button>
                 <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#createTrainingModal"><i class="bi bi-plus-lg"></i> Add Training</button>
             </div>
         </header>
