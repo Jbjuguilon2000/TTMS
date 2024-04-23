@@ -9,8 +9,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="./css/bootstrap.min.css" rel="stylesheet">
     <link href="./css/styles.css" rel="stylesheet">
-
-
 </head>
 
 <body>
@@ -24,8 +22,6 @@
         <div id="main"></div>
         <?php include('components/copyright.php') ?>
     </div>
-
-
 
     <script src="./js/bootstrap.bundle.min.js"></script>
     <script src="./js/jquery.min.js"></script>

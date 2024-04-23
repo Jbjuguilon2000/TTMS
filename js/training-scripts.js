@@ -352,3 +352,19 @@ function printAllTraining() {
     error: function () {},
   });
 }
+
+function addAttendee(tID) {
+  $.ajax({
+    url: "components/TraineeTable.php",
+    type: "POST",
+    data: {
+      tID: tID,
+    },
+    success: function (response) {
+      $("#addAttendeeTable").html(response);
+    },
+    error: function (response) {
+      console.log(response);
+    },
+  });
+}

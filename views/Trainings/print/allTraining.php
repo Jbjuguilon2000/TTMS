@@ -39,7 +39,7 @@ if ($start_date != "") {
     $trnQuery .= $separator . " (StartDate BETWEEN '$start_date' AND '$end_date') ";
 }
 
-$trnQuery .= "  ORDER BY `StartDate` DESC";
+$trnQuery .= "  ORDER BY `StartDate` ASC";
 
 $trainingQuery = $dbTTMS->query($trnQuery);
 
@@ -53,6 +53,40 @@ while ($r = $attendanceQuery2->fetch_assoc()) {
     $fetchPassers[$r['TrainingID']] = $r['Passers'];
 }
 
+$Trainings = array();
+$count = 1;
+while ($r = $trainingQuery->fetch_assoc()) {
+    $ID = $r['ID'];
+    $Trainees = (isset($fetchTrainees[$ID])) ? $fetchTrainees[$ID] : 0;
+    $Passers = (isset($fetchPassers[$ID])) ? $fetchPassers[$ID] : 0;
+    $CourseID = utilCourse($r['CourseID']);
+    $BatchNo = $r['BatchNo'];
+    $Remarks = $r['Remarks'];
+    $SubjectID = utilSubjects($r['SubjectID']);
+    $TrainerID = trainerMapping($r['TrainerID']);
+    $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
+    $StatusID = utilTrainingStatus($r['StatusID']);
+    if (isset($r['StartDate']) && $r['StartDate'] !== null) {
+        $StartDate[] = $r['StartDate'];
+    }
+    if (isset($r['EndDate']) && $r['EndDate'] !== null) {
+        $EndDate[] = $r['EndDate'];
+    }
+    $Trainings[] = "<tr>
+            <td class='align-middle text-center'>$count</td>
+            <td class='align-middle'>$CourseID<br><span class='text-muted'>$TrainingDate</span></td>
+            <td class='align-middle text-center'>$BatchNo</td>
+            <td class='align-middle'>$SubjectID</td>
+            <td class='align-middle'>$TrainerID</td>
+            <td class='align-middle text-center'>$Trainees</td>
+            <td class='align-middle text-center'>$Passers</td>
+            <td class='align-middle text-center'>$StatusID</td>
+        </tr>";
+    $count++;
+}
+$edCount = count($EndDate);
+$TrainingDates = trainingDateFormat($StartDate[0], $EndDate[$edCount - 1]);
+
 ?>
 
 <style>
@@ -60,9 +94,22 @@ while ($r = $attendanceQuery2->fetch_assoc()) {
         size: landscape;
         margin: .5in;
     }
+
+    .table-title {
+        font-size: 12pt;
+    }
+
+    .table-sub-title {
+        font-size: 10pt;
+    }
 </style>
 
-<table class="table table-bordered">
+<div class="text-center mb-3">
+    <p class="m-0 table-title"><strong>Technical Trainings</strong></p>
+    <p class="m-0 table-sub-title"><?= $TrainingDates ?></p>
+</div>
+
+<table class="table print-table">
     <thead class="sticky-top">
         <tr>
             <th class="align-middle col-1 text-center">#</th>
@@ -77,29 +124,8 @@ while ($r = $attendanceQuery2->fetch_assoc()) {
     </thead>
     <tbody>
         <?php
-        $count = 1;
-        while ($r = $trainingQuery->fetch_assoc()) {
-            $ID = $r['ID'];
-            $Trainees = (isset($fetchTrainees[$ID])) ? $fetchTrainees[$ID] : 0;
-            $Passers = (isset($fetchPassers[$ID])) ? $fetchPassers[$ID] : 0;
-            $CourseID = utilCourse($r['CourseID']);
-            $BatchNo = $r['BatchNo'];
-            $Remarks = $r['Remarks'];
-            $SubjectID = utilSubjects($r['SubjectID']);
-            $TrainerID = trainerMapping($r['TrainerID']);
-            $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
-            $StatusID = utilTrainingStatus($r['StatusID']);
-            echo "<tr>
-                    <td class='align-middle text-center'>$count</td>
-                    <td class='align-middle'>$CourseID<br><span class='text-muted'>$TrainingDate</span></td>
-                    <td class='align-middle text-center'>$BatchNo</td>
-                    <td class='align-middle'>$SubjectID</td>
-                    <td class='align-middle'>$TrainerID</td>
-                    <td class='align-middle text-center'>$Trainees</td>
-                    <td class='align-middle text-center'>$Passers</td>
-                    <td class='align-middle text-center'>$StatusID</td>
-                </tr>";
-            $count++;
+        foreach ($Trainings as $Training) {
+            echo $Training;
         }
         ?>
     </tbody>

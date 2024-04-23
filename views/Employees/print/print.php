@@ -29,13 +29,12 @@ while ($r = $Training->fetch_assoc()) {
     }
     $TrainingDate = trainingDateFormat($r['StartDate'], $r['EndDate']);
     $BatchNo = isset($r['BatchNo']) ? $r['BatchNo'] : 1;
-    $Trainings[] = "
-    <div class='d-flex' style='gap: 10px;'>
-        <div><p>•</p></div>
-        <div><p class='m-0'><strong>$CourseID Batch $BatchNo</strong></p><p class='m-0'>$TrainingDate</p></div>
-    </div>
-    ";
+    $Trainings[] = "<div class='d-flex' style='gap: 10px;'>
+                        <div><p>•</p></div>
+                        <div><p class='m-0'><strong>$CourseID Batch $BatchNo</strong></p><p class='m-0'>$TrainingDate</p></div>
+                    </div>";
 }
+
 $edCount = count($EndDate);
 
 $StarttoLastDate = trainingDateFormat($StartDate[0], $EndDate[$edCount - 1]);
@@ -43,8 +42,8 @@ $StarttoLastDate = trainingDateFormat($StartDate[0], $EndDate[$edCount - 1]);
 
 <div class="PrintHeader">
     <div class="d-flex align-items-center">
-        <img class="img1" src="Assets/logos/BagongPilipinas.png" alt="">
         <img class="img2" src="Assets/logos/DOTr.png" alt="">
+        <img class="img1" src="Assets/logos/BagongPilipinas.png" alt="">
         <div class="mx-4">
             <p class="m-0">Republic of the Philippines</p>
             <p class="m-0"><strong>Department of Transportation - Metro Rail Transit 3</strong></p>

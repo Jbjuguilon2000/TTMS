@@ -71,7 +71,22 @@ usort($Attendees, function ($a, $b) {
         </nav>
     </div>
     <div>
-        <button class="btn btn-outline-secondary" onclick="files(<?= $tID ?>)"><i class="bi bi-folder-fill h6 align-middle me-1"></i> Files</button>
+        <div class="d-flex">
+            <div class="dropdown">
+                <button class="btn btn-link text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="bi bi-printer-fill h5 align-middle"></i> Print
+                </button>
+                <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Memorandum</a></li>
+                    <li><a class="dropdown-item" href="#">List of Attendees</a></li>
+                    <li><a class="dropdown-item" href="#">Completion Report</a></li>
+                    <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(Refresher)</span></a></li>
+                    <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/ Subjects)</span></a></li>
+                    <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/o Subject)</span></a></li>
+                </ul>
+            </div>
+            <button class="btn btn-outline-secondary" onclick="files(<?= $tID ?>)"><i class="bi bi-folder-fill h6 align-middle me-1"></i> Files</button>
+        </div>
     </div>
 </div>
 
@@ -104,22 +119,7 @@ usort($Attendees, function ($a, $b) {
 <hr>
 <div class="mb-3 d-flex justify-content-between align-items-center">
     <h3>Attendee List</h3>
-    <div class="d-flex">
-        <div class="dropdown">
-            <button class="btn btn-link text-muted dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="bi bi-printer-fill h5 align-middle"></i> Print
-            </button>
-            <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Memorandum</a></li>
-                <li><a class="dropdown-item" href="#">List of Attendees</a></li>
-                <li><a class="dropdown-item" href="#">Completion Report</a></li>
-                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(Refresher)</span></a></li>
-                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/ Subjects)</span></a></li>
-                <li><a class="dropdown-item" href="#">Certificate <span class="text-muted">(w/o Subject)</span></a></li>
-            </ul>
-            <button class="btn btn-sm btn-primary"><i class="bi bi-plus-lg"></i> Add Attendees</button>
-        </div>
-    </div>
+    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addTraineeModal" onclick="addAttendee(<?= $tID ?>)"><i class="bi bi-plus-lg"></i> Add Attendees</button>
 </div>
 <div class="table-responsive ">
     <table class="table table-hover">
@@ -181,3 +181,5 @@ usort($Attendees, function ($a, $b) {
         </tbody>
     </table>
 </div>
+
+<?php require(dirname(dirname(__DIR__)) . '/components/Trainings/addTraineesModal.php') ?>
