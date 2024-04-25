@@ -26,6 +26,7 @@ $(function () {
   $(document).on("click", ".page-item", function () {
     var page = $(this).attr("id");
     table(page);
+    viewAttendeeTable(page);
   });
 
   var TrainerIDArray = [];
@@ -353,15 +354,24 @@ function printAllTraining() {
   });
 }
 
-function addAttendee(tID) {
+function viewAttendeeTable(page) {
+  var get_search = $("#view_search").val();
+  var get_division = $("#view_division").val();
+  var get_designation = $("#view_designation").val();
+  var tID = $("#view_hiddenTrainingID").val();
   $.ajax({
     url: "components/TraineeTable.php",
     type: "POST",
     data: {
       tID: tID,
+      page: page,
+      search: get_search,
+      division: get_division,
+      designation: get_designation,
     },
     success: function (response) {
-      $("#addAttendeeTable").html(response);
+      $("#viewAttendeeTable").html(response);
+      console.log(page);
     },
     error: function (response) {
       console.log(response);

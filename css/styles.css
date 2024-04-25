@@ -76,13 +76,9 @@ button,
     size: A4 portrait;
     margin: 0.25in 0.25in 0.25in 0.25in;
   }
-  .PrintHeader .img1 {
+  .PrintHeader img {
     height: 1in;
     width: 1in;
-  }
-  .PrintHeader .img2 {
-    height: 0.9in;
-    width: 0.9in;
   }
   .double-hr {
     margin-top: 5px;

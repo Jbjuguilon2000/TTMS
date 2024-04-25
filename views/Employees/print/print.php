@@ -42,8 +42,8 @@ $StarttoLastDate = trainingDateFormat($StartDate[0], $EndDate[$edCount - 1]);
 
 <div class="PrintHeader">
     <div class="d-flex align-items-center">
-        <img class="img2" src="Assets/logos/DOTr.png" alt="">
-        <img class="img1" src="Assets/logos/BagongPilipinas.png" alt="">
+        <img src="Assets/logos/DOTr-logo.png" alt="">
+        <img src="Assets/logos/bagong-pilipinas-logo.png" alt="">
         <div class="mx-4">
             <p class="m-0">Republic of the Philippines</p>
             <p class="m-0"><strong>Department of Transportation - Metro Rail Transit 3</strong></p>

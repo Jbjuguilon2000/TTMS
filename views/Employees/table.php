@@ -11,7 +11,7 @@ $search_division = $_POST['division'];
 $empQuery = "SELECT * FROM employee";
 
 if ($search_name != '') {
-    $empQuery .= " WHERE CONCAT(Lastname, ', ', Firstname, ' ', ExtensionName, ' ', MiddleName, '.') LIKE '%$search_name%' ";
+    $empQuery .= " WHERE CONCAT(LastName, ', ', FirstName, ' ', ExtensionName, ' ', MiddleName, '.') LIKE '%$search_name%' ";
 }
 
 if ($search_designation != '') {

@@ -91,6 +91,7 @@ usort($Attendees, function ($a, $b) {
 </div>
 
 <div class="bg-white py-3 px-4">
+    <input type="hidden" id="view_hiddenTrainingID" value="<?= $tID ?>">
     <div class="row">
         <div class="col-md-8">
             <h5><?= $CourseID ?> Batch <?= $BatchNo ?></h5>
@@ -119,7 +120,7 @@ usort($Attendees, function ($a, $b) {
 <hr>
 <div class="mb-3 d-flex justify-content-between align-items-center">
     <h3>Attendee List</h3>
-    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#addTraineeModal" onclick="addAttendee(<?= $tID ?>)"><i class="bi bi-plus-lg"></i> Add Attendees</button>
+    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#viewEmployeeModal" onclick="viewAttendeeTable()"><i class="bi bi-plus-lg"></i> Add Attendees</button>
 </div>
 <div class="table-responsive ">
     <table class="table table-hover">
@@ -182,4 +183,4 @@ usort($Attendees, function ($a, $b) {
     </table>
 </div>
 
-<?php require(dirname(dirname(__DIR__)) . '/components/Trainings/addTraineesModal.php') ?>
+<?php require(dirname(dirname(__DIR__)) . '/components/Trainings/viewEmployeeModal.php') ?>
